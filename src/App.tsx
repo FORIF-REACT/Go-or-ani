@@ -16,6 +16,7 @@ function App() {
         <Button size={"icon"} onClick={() => setCount((count) => count - 1)}>
           -
         </Button>
+        <h1>I FINALLY MADE LOGIN FUNCTION!</h1>
       </div>
     </div>
   );
