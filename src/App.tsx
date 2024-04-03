@@ -17,6 +17,7 @@ function App() {
           -
         </Button>
         <h1>I FINALLY MADE LOGIN FUNCTION!</h1>
+        <h1>I MADE BET FUNCTION</h1>
       </div>
     </div>
   );
