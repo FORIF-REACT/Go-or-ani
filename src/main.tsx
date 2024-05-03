@@ -38,10 +38,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/result",
-  //   element: <BettingResult />,
-  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
