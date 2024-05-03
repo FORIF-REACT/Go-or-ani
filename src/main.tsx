@@ -5,7 +5,6 @@ import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Admin from "./pages/admin/index.tsx";
-//import BettingResult from "./pages/betting-result/index.tsx";
 import UserAdd from "./pages/admin/UserAdd.tsx";
 import UserModify from "./pages/admin/UserModify.tsx";
 import BetModify from "./pages/admin/BetModify.tsx";
