@@ -4,11 +4,16 @@ import App from "./App.tsx";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BettingResult from "./pages/betting-result/index.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/result",
+    element: <BettingResult />,
   },
 ]);
 
