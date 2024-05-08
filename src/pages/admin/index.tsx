@@ -11,7 +11,7 @@ const menus: Menu[]= [
   {title: "대시보드", link: ""},
   {title: "사용자 추가", link: "adduser"},
   {title: "사용자 정보 수정 / 삭제", link: "modifyuser"},
-  {title: "베팅 정보 수정", link: "modifybet"},
+  {title: "베팅 정보 수정 / 삭제", link: "modifybet"},
 ];
 
 export default function Admin() {
