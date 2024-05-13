@@ -16,6 +16,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      // Admin Page
       {
         path: "/admin",
         element: <Admin />,
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      // Admin Page
+      {
+        path: "/result",
+        element: <BettingResult />
+      }
     ]
   },
   
