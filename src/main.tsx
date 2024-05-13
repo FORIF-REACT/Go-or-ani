@@ -14,29 +14,32 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
     children: [
       {
-        path: "/admin/adduser",
-        element: <UserAdd />,
-      },
-      {
-        path: "/admin/modifyuser",
-        element: <UserModify />,
-      },
-      {
-        path: "/admin/modifybet",
-        element: <BetModify />,
-      },
-      {
         path: "/admin",
-        element: <Dashboard />,
+        element: <Admin />,
+        children: [
+          {
+            path: "/admin/adduser",
+            element: <UserAdd />,
+          },
+          {
+            path: "/admin/modifyuser",
+            element: <UserModify />,
+          },
+          {
+            path: "/admin/modifybet",
+            element: <BetModify />,
+          },
+          {
+            path: "/admin",
+            element: <Dashboard />,
+          },
+        ],
       },
-    ],
+    ]
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
