@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BettingResult from "./pages/betting-result/index.tsx";
 import Admin from "./pages/admin/index.tsx";
 import UserAdd from "./pages/admin/UserAdd.tsx";
 import UserModify from "./pages/admin/UserModify.tsx";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      // Admin Page
       {
         path: "/admin",
         element: <Admin />,
@@ -37,6 +39,12 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      // Admin Page
+      {
+        path: "/result",
+        element: <BettingResult />
+      }
     ]
   },
   
