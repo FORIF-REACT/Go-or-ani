@@ -12,6 +12,7 @@ import BetModify from "./pages/admin/BetModify.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 import Profile from "./pages/profile/index.tsx"; 
 import Create from "./pages/create-betting/create.tsx"; 
+import BettingList from './pages/betting-list/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,12 @@ const router = createBrowserRouter([
       {
         path: "/create",
         element: <Create />
+      },
+
+      //Betting List Page
+      {
+        path: "/bettinglist",
+        element: <BettingList/>
       }
     ]
   }
