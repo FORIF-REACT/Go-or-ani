@@ -82,12 +82,12 @@ export default function BettingResult() {
       <div className="text-4xl font-bold">{"통계"}</div>
 
       <PercentageBar
-        title="투표율 기준"
+        title={"투표율 기준"}
         ratio={0.635}
         selections={["부먹", "찍먹"]}
       />
       <PercentageBar
-        title="포인트 기준"
+        title={"포인트 기준"}
         ratio={0.235}
         selections={["부먹", "찍먹"]}
       />
@@ -106,7 +106,7 @@ export default function BettingResult() {
           </div>
         </div>
 
-        <div className="text-4xl font-bold text-primary-green-500">
+        <div className="text-4xl font-bold text-primary-green-400">
           {" + 50"}
         </div>
       </div>
