@@ -12,7 +12,6 @@ import BetModify from "./pages/admin/BetModify.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 import Profile from "./pages/profile/index.tsx"; 
 import Create from "./pages/create-betting/create.tsx"; 
-import Top from "./top.tsx";
 import Login from "./pages/login/index.tsx";
 import BettingList from './pages/betting-list/index.tsx';
 
@@ -83,7 +82,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <Top />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
