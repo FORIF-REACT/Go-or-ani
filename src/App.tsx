@@ -5,7 +5,7 @@ import Top from "./top";
 function App() {
   return (
     <div className="w-screen gap-4">
-      <div className="fixed top-0 w-full">
+      <div className="fixed top-0 w-full z-10">
         <Top />
       </div>
 
