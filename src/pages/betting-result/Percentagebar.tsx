@@ -3,9 +3,9 @@ export default function PercentageBar({
   ratio,
   selections,
 }: {
-  title: string;
-  ratio: number;
-  selections: string[];
+  title: string,
+  ratio: number,
+  selections: string[],
 }) {
   return (
     <div className="flex flex-col gap-2">
