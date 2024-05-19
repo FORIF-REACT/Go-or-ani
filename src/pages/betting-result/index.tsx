@@ -4,13 +4,13 @@
  * @param
  * @returns
  *
- * TODO Design change needed
+ * TODO 
  */
 
 import Divider from "./Divider";
-import Percentagebar from "./Percentagebar";
+import PercentageBar from "./PercentageBar";
 import Rank from "./Rank";
-import SectionWrapper from "./Sectionwrapper";
+import User from "./User";
 
 // Rank TestCase
 type Rank = {
@@ -63,39 +63,60 @@ const example_rank: Rank[] = [
 
 export default function BettingResult() {
   return (
-    <div className="">
-      <Divider />
+    <div className="w-[1024px] mt-10 flex flex-col gap-8 mb-24">
+      {/*제목과 기본 정보*/}
+      <div className="text-4xl font-bold">{"부먹과 찍먹, 당신의 선택은?"}</div>
 
-      <div className="text-4xl font-bold text-slate-600 pb-2">부먹 VS 찍먹</div>
-      <div className="text-2xl text-slate-600">선택지 2 / 투표 수 기준</div>
+      <div>
+        <div className="text-xl text-primary-green-300 font-bold">{"포인트 기준, 과반수 승리"}</div>
+        <div className="text-xl text-primary-green-300 font-bold">
+          {"마감시간 2024/05/19 23:26:00"}
+        </div>
+      </div>
 
-      <Divider />
+      <User id="Seongjinemong" />
 
-      <SectionWrapper>
-        <div className="text-xl text-slate-600">투표 기준 비율</div>
-        <Percentagebar percent={0.423} />
-      </SectionWrapper>
+      <Divider/>
 
-      <Divider />
+      {/*통계*/}
+      <div className="text-4xl font-bold">{"통계"}</div>
 
-      <SectionWrapper>
-        <div className="text-xl text-slate-600">베팅 포인트 기준 비율</div>
-        <Percentagebar percent={0.298} />
-      </SectionWrapper>
+      <PercentageBar
+        title="투표율 기준"
+        ratio={0.635}
+        selections={["부먹", "찍먹"]}
+      />
+      <PercentageBar
+        title="포인트 기준"
+        ratio={0.235}
+        selections={["부먹", "찍먹"]}
+      />
 
-      <Divider />
+      <Divider/>
 
-      <SectionWrapper>
-        <div className="text-xl text-slate-600">내가 얻은 포인트</div>
-        <div className="text-2xl font-bold text-slate-600">+ 10</div>
-      </SectionWrapper>
+      {/*사용자가 얻은 포인트*/}
+      <div className="text-4xl font-bold">{"내가 얻은 포인트"}</div>
+      <div className="flex flex-row justify-between items-center">
+        <div>
+          <div className="text-2xl font-bold mb-2">
+            {"50 * (0.5 / 0.5) = 50"}
+          </div>
+          <div className="text-background-black-300">
+            {"내가 베팅한 포인트 * (승자 포인트 비율 / 패자 포인트 비율)"}
+          </div>
+        </div>
 
-      <Divider />
+        <div className="text-4xl font-bold text-primary-green-500">
+          {" + 50"}
+        </div>
+      </div>
 
-      <SectionWrapper>
-        <div className="text-xl text-slate-600">얻은 포인트 TOP 10</div>
-        <Rank ranks={example_rank} />
-      </SectionWrapper>
+      <Divider/>
+
+      {/*가장 많은 포인트를 얻은 사용자*/}
+      <div className="text-4xl font-bold">{"최다 포인트 획득 Top 10"}</div>
+
+      <Rank data={example_rank} />
     </div>
   );
 }

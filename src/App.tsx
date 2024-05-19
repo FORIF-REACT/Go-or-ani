@@ -9,7 +9,7 @@ function App() {
         <Top />
       </div>
 
-      <div className="w-full flex flex-col items-center mt-20">
+      <div className="w-full flex flex-col items-center pt-20">
         <Outlet />
       </div>
     </div>
