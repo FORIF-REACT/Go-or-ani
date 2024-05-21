@@ -25,7 +25,7 @@ export default function Admin() {
         <Sidebar menus={menus} selected={selected} setSelected={setSelected} />
       </div>
 
-      <div className="w-full ml-4">
+      <div className="w-full ml-4 mb-4">
         <Outlet/>
       </div>
     </div>
