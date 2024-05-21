@@ -63,16 +63,15 @@ export default function BetModify() {
 }
 
 function Card({
-  _id,
   subject,
   summary,
   deadline,
 }: {
-  _id: string;
   subject: string;
   summary: string;
   deadline: string;
 }) {
+
   return (
     <div className="flex flex-col gap-2 p-4 bg-background-black-900  rounded-lg hover:bg-background-black-700 transition-all">
       <div className="font-bold">{subject}</div>
