@@ -27,7 +27,7 @@ export default function PercentageBar({
           <div className="opacity-50">{selections[0]}</div>
         </div>
         <div className="flex flex-col justify-end">
-          <div className="font-bold opacity-50"n
+          <div className="font-bold opacity-50">
             {Math.round((1 - ratio) * 10000) / 100}
           </div>
           <div className="opacity-50">{selections[1]}</div>
