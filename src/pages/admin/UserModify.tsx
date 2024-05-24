@@ -30,17 +30,13 @@ export default function UserModify() {
             {sampleData.map((value, i) => {
               return (
                 <div
+                  onClick={() => {
+                    setSelected(i);
+                  }}
                   style={i == selected ? { backgroundColor: "#5D5D5D" } : {}}
                   className="rounded-lg py-2 hover:bg-background-black-900 transition-all"
                 >
-                  <div
-                    onClick={() => {
-                      setSelected(i);
-                    }}
-                    className="pl-4"
-                  >
-                    {value.name}
-                  </div>
+                  <div className="pl-4">{value.name}</div>
                 </div>
               );
             })}
