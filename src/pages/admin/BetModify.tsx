@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function BetModify() {
   const sampleData = [
     {
@@ -17,22 +19,26 @@ export default function BetModify() {
       subject: "부먹 찍먹",
       summary: "23명의 사용자 참여",
       deadline: "2024-05-20 23:16:00",
-    },{
+    },
+    {
       _id: "fdasfasf",
       subject: "부먹 찍먹",
       summary: "23명의 사용자 참여",
       deadline: "2024-05-20 23:16:00",
-    },{
+    },
+    {
       _id: "fdasfasf",
       subject: "부먹 찍먹",
       summary: "23명의 사용자 참여",
       deadline: "2024-05-20 23:16:00",
-    },{
+    },
+    {
       _id: "fdasfasf",
       subject: "부먹 찍먹",
       summary: "23명의 사용자 참여",
       deadline: "2024-05-20 23:16:00",
-    },{
+    },
+    {
       _id: "fdasfasf",
       subject: "부먹 찍먹",
       summary: "23명의 사용자 참여",
@@ -55,7 +61,7 @@ export default function BetModify() {
 
       <div className="grid grid-cols-2 gap-4">
         {sampleData.map((data) => {
-          return <div>{Card(data)}</div>;
+          return <Link to={"/admin/modifybet/" + data._id}>{Card(data)}</Link>;
         })}
       </div>
     </div>
@@ -71,7 +77,6 @@ function Card({
   summary: string;
   deadline: string;
 }) {
-
   return (
     <div className="flex flex-col gap-2 p-4 bg-background-black-900  rounded-lg hover:bg-background-black-700 transition-all">
       <div className="font-bold">{subject}</div>
