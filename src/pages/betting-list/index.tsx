@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BettingOrderControl from "./BettingOrderControl";
 import BettingCard from "./BettingCard";
 import BettingListPaginationController from "./BettingListPaginationController";
 import { BettingInfoDto } from "./BettingInfoDto";
+import BettingModal from "./BettingModal";
+import { useSearchParams } from "react-router-dom";
 
 // 디버그용 베팅 카드 리스트
 const betting_card_lists : BettingInfoDto[] = [
@@ -22,11 +24,20 @@ const betting_card_lists : BettingInfoDto[] = [
 ]
 
 export default function BettingList() {
+    const [searchParams] = useSearchParams();
+
     // 정렬 기준
-    const [orderCriterion, setOrderCriterion] = useState<string>('');
+    const initial_sort:string = searchParams.get("sort")||"";
+    const [orderCriterion, setOrderCriterion] = useState<string>(initial_sort);
     console.log(`orderCriterion : ${orderCriterion}`);
+    
+    // get으로 받아온 쿼리가 안 보이도록 삭제
+    history.replaceState({}, "", '/bettinglist');
+    
     // 페이지 번호
     const [pageIndex, setPageIndex] = useState<number>(1);
+    // 클릭된 BettingInfo
+    const [selectedBettingInfo, setSelectedBettingInfo] = useState<BettingInfoDto|null>(betting_card_lists[0]);
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">
@@ -43,5 +54,6 @@ export default function BettingList() {
       }
     </div>
     <BettingListPaginationController idx={pageIndex} lastIdx={20} setIdx={setPageIndex}/>
+    <BettingModal selectedBettingInfo={selectedBettingInfo} setSelectedBettingInfo={setSelectedBettingInfo}/>
   </div>
 )}
