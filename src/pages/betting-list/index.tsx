@@ -3,6 +3,7 @@ import BettingOrderControl from "./BettingOrderControl";
 import BettingCard from "./BettingCard";
 import BettingListPaginationController from "./BettingListPaginationController";
 
+// 디버그용 베팅 카드 리스트
 const betting_card_lists = [
   {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/pic_trulli.jpg"}, 
   {"title" : "더 극혐인거 고르기 : 민트초코 vs 하와이안 피자", "username" : "에이다 러브레이스", "time" : (new Date("2024-03-14 21:14")).getTime(), "participants" : 1111, "img_src" : "https://www.w3schools.com/html/img_girl.jpg"}, 
