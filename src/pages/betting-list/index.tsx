@@ -36,8 +36,8 @@ export default function BettingList() {
     
     <div className="flex  justify-start items-start self-stretch flex-wrap h-fit gap-2.5">
       {
-        betting_card_lists.map((obj)=>(
-          <BettingCard title={obj.title} username={obj.username} time={obj.time} participants={obj.participants} img_src={obj.img_src}/>
+        betting_card_lists.map((obj, index)=>(
+          <BettingCard key={index} title={obj.title} username={obj.username} time={obj.time} participants={obj.participants} img_src={obj.img_src}/>
         ))
       }
     </div>
