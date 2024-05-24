@@ -45,7 +45,7 @@ function BettingOrderControlButton({isClicked, Key, text, setStateCallback} : {i
   return(
     <div
     className={`transition flex justify-start items-start flex-grow-0 flex-shrink-0 relative px-3 py-1.5 rounded ${
-      isClicked ? ' bg-white text-black' : 'cursor-pointer hover:bg-white hover:text-black bg-transparent text-white'
+      isClicked ? 'bg-primary-purple-500 text-black' : 'cursor-pointer hover:text-black bg-transparent hover:bg-primary-green-300 text-white hover:text-background-black-950'
     }`}
     onClick={()=> setStateCallback(Key)}
   >
