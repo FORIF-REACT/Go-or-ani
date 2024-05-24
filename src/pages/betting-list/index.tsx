@@ -3,7 +3,21 @@ import BettingOrderControl from "./BettingOrderControl";
 import BettingCard from "./BettingCard";
 import BettingListPaginationController from "./BettingListPaginationController";
 
-
+const betting_card_lists = [
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/pic_trulli.jpg"}, 
+  {"title" : "더 극혐인거 고르기 : 민트초코 vs 하와이안 피자", "username" : "에이다 러브레이스", "time" : (new Date("2024-03-14 21:14")).getTime(), "participants" : 1111, "img_src" : "https://www.w3schools.com/html/img_girl.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+  {"title" : "무야호", "username" : "김 아무개", "time" : (new Date("1972-11-21 10:40")).getTime(), "participants" : 523, "img_src" : "https://www.w3schools.com/html/img_chania.jpg"}, 
+]
 
 export default function BettingList() {
     // 정렬 기준
@@ -21,18 +35,11 @@ export default function BettingList() {
     <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>
     
     <div className="flex  justify-start items-start self-stretch flex-wrap h-fit gap-2.5">
-      <BettingCard title="무야호" username="김 아무개" time={(new Date("2024-05-18 21:14")).getTime()} participants={523} img_src="https://www.w3schools.com/html/pic_trulli.jpg"/>
-      <BettingCard title="더 극혐인거 고르기 : 민트초코 vs 하와이안 피자" username="에이다 러브레이스" time={(new Date("2024-03-14 21:14")).getTime()} participants={1111} img_src="https://www.w3schools.com/html/img_girl.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
-      <BettingCard title="테스트" username="김두한" time={(new Date("1972-11-21 10:40")).getTime()} participants={7327} img_src="https://www.w3schools.com/html/img_chania.jpg"/>
+      {
+        betting_card_lists.map((obj)=>(
+          <BettingCard title={obj.title} username={obj.username} time={obj.time} participants={obj.participants} img_src={obj.img_src}/>
+        ))
+      }
     </div>
     <BettingListPaginationController idx={pageIndex} lastIdx={20} setIdx={setPageIndex}/>
   </div>
