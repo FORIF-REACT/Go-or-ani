@@ -28,7 +28,6 @@ export default function BettingList() {
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">
-    <button onClick={()=>{document.body.style.backgroundColor = "black";}}>디버그용 버튼(배경 검게 만들기)</button>
     <p className="self-stretch flex-grow-0 flex-shrink-0 w-[1024px] h-[70px] text-[35px] font-bold text-left text-white">
       현재 진행중인 베팅 목록
     </p>
