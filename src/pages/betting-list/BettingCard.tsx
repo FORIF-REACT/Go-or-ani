@@ -14,7 +14,7 @@ export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {
   
   return(
       <div
-        className="cursor-pointer transition flex justify-start items-start flex-grow-0 flex-shrink-0 w-[330px] h-[180px] gap-4 p-[17px] rounded-md bg-background-black-950 border-4 border-primary-purple-500 hover:bg-[#d9d9d9] hover:border-primary-green-300 text-[#d9d9d9] hover:text-background-black-950"
+        className="select-none cursor-pointer transition flex justify-start items-start flex-grow-0 flex-shrink-0 w-[330px] h-[180px] gap-4 p-[17px] rounded-md bg-background-black-950 border-4 border-primary-purple-500 hover:bg-[#d9d9d9] hover:border-primary-green-300 text-[#d9d9d9] hover:text-background-black-950"
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
         onClick={()=>{setSelectedBettingInfo(bettingInfoDto);}}
       >
