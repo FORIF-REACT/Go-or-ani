@@ -6,7 +6,7 @@ import React from "react";
  */
 export default function BettingListPaginationController({idx, setIdx, lastIdx} : {idx:number, setIdx:React.Dispatch<React.SetStateAction<number>>, lastIdx:number}) {
 return(
-    <div className="transition flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 gap-1">
+    <div className="select-none transition flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 gap-1">
       {idx != 1 ? <PrevBtn onClick={()=>{setIdx(idx-1)}}/> : null}
       {idx-3 >= 1 ? <Dots/> : null}
       {idx-2 >= 1 ? <PageBtn isClicked={false} pageNum={idx-2} setStateCallback={setIdx}/> : null}
