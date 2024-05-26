@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BettingOrderControl from "./BettingOrderControl";
 import BettingCard from "./BettingCard";
 import BettingListPaginationController from "./BettingListPaginationController";
@@ -37,7 +37,7 @@ export default function BettingList() {
     // 페이지 번호
     const [pageIndex, setPageIndex] = useState<number>(1);
     // 클릭된 BettingInfo
-    const [selectedBettingInfo, setSelectedBettingInfo] = useState<BettingInfoDto|null>(betting_card_lists[0]);
+    const [selectedBettingInfo, setSelectedBettingInfo] = useState<BettingInfoDto|null>(null);
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">
@@ -45,11 +45,10 @@ export default function BettingList() {
       현재 진행중인 베팅 목록
     </p>
     <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>
-    
     <div className="flex  justify-start items-start self-stretch flex-wrap h-fit gap-2.5">
       {
         betting_card_lists.map((obj)=>(
-          <BettingCard key={obj.id} bettingInfoDto={obj}/>
+          <BettingCard key={obj.id} bettingInfoDto={obj} setSelectedBettingInfo={setSelectedBettingInfo}/>
         ))
       }
     </div>
