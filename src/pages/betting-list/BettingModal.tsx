@@ -213,14 +213,13 @@ function Slider({max, value, setBettingAmount}: {max:number, value:number, setBe
       <input 
        //[&::-ms-thumb][&::-webkit-slider-thumb][&::-moz-range-thumb]
        //[&::-ms-track][&::-moz-range-track][&::-webkit-slider-runnable-track]
-        className={`h-3 cursor-ew-resize w-full rounded-full 
+        className={`appearance-none h-3 cursor-ew-resize w-full rounded-full 
         [&::-moz-range-thumb]:bg-[#d9d9d9] [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-background-black-950 [&::-moz-range-thumb]:border-4
         [&::-moz-range-progress]:bg-primary-green-300 [&::-moz-range-progress]:h-3 [&::-moz-range-progress]:rounded-full
         [&::-moz-range-track]:bg-[#d9d9d9] [&::-moz-range-track]:h-3 [&::-moz-range-track]:rounded-full
         [&::-webkit-slider-thumb]:-translate-y-1.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#d9d9d9] [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(25,25,25,1)]
         [&::-webkit-slider-runnable-track]:appearance-none [&::-webkit-slider-runnable-track]:bg-gradient-to-r ${gradientObject[percentage]} [&::-webkit-slider-runnable-track]:h-3 [&::-webkit-slider-runnable-track]:rounded-full
         `} 
-        style={{WebkitAppearance:"none"}}
         type="range" max={max} value={value} onChange={ (event)=>{setBettingAmount(event.target.valueAsNumber);} }
       />
       <p className="select-none flex-grow-0 flex-shrink-0 text-[19px] font-bold text-left text-white h-fit">
