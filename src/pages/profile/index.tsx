@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'; //useeffec 추가하기!!~!!!
 import { useParams } from 'react-router-dom';
 
 // UserProfile 인터페이스 정의: 사용자 프로필 데이터 타입을 지정
@@ -20,15 +20,15 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [newUserName, setNewUserName] = useState('');
 
-  useEffect(() => {
-    // API 호출을 가정하여 사용자 정보를 초기화합니다.
-    setUserProfile({
-      userId: userId,
-      userName: 'USER.123',
-      points: 10000,
-      rightsOfHost: 5,
-    });
-  }, [userId]);
+  // useEffect(() => {
+  //   // API 호출을 가정하여 사용자 정보를 초기화합니다.
+  //   setUserProfile({
+  //     userId: userId,
+  //     userName: 'USER.123',
+  //     points: 10000,
+  //     rightsOfHost: 5,
+  //   });
+  // }, [userId]);
 
   const handleEditClick = () => {
     setEditMode(true);
