@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BettingResult from "./pages/betting-result/index.tsx";
@@ -10,15 +10,14 @@ import UserAdd from "./pages/admin/UserAdd.tsx";
 import UserModify from "./pages/admin/UserModify.tsx";
 import BetModify from "./pages/admin/BetModify.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
-import Profile from "./pages/profile/index.tsx";
-import Create from "./pages/create-betting/create.tsx";
+import Profile from "./pages/profile/index.tsx"; 
+import Create from "./pages/create-betting/create.tsx"; 
 import Login from "./pages/login/index.tsx";
-import BettingList from "./pages/betting-list/index.tsx";
-import BetModifyDetail from "./pages/admin/BetModifyDetail.tsx";
+import BettingList from './pages/betting-list/index.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       // Admin Page
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
             element: <BetModify />,
           },
           {
-            path: "/admin/modifybet/:betId",
-            element: <BetModifyDetail />,
-          },
-          {
             path: "/admin",
             element: <Dashboard />,
           },
@@ -52,37 +47,39 @@ const router = createBrowserRouter([
       // bettingresult Page
       {
         path: "/result",
-        element: <BettingResult />,
+        element: <BettingResult />
       },
 
       // Profile Page
       {
-        path: "/profile",
-        element: <Profile />,
+        path: "/profile/:userId",
+        element: <Profile />
       },
 
       // Create Page
       {
         path: "/create",
-        element: <Create />,
+        element: <Create />
       },
-
+      
       // Login Page
       {
         path: "/login",
-        element: <Login />,
+        element: <Login />
       },
 
       //Betting List Page
       {
         path: "/bettinglist",
-        element: <BettingList />,
-      },
-    ],
-  },
+        element: <BettingList/>
+      }
+      
+    ]
+  }
+  
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root")!);
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
