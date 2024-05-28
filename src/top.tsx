@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 function Top() {
+
+  const userId = '123'; //임시부여한 아이디
+
   return (
     <div>
       <nav className="flex items-center justify-between flex-wrap bg-background-black-950 p-6">
@@ -17,6 +20,11 @@ function Top() {
         </div>
         <div className="BettingResult">
           <Link to="result">BettingResult</Link> @수정필요
+        </div>
+        <div className="ProfileLink">
+          <Link to={`/profile/${userId}`} className="text-primary-green-300 hover:text-green-500">
+            Profile
+          </Link>
         </div>
       </nav>
     </div>
