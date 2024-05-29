@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './Fonts/Font.css';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BettingResult from "./pages/betting-result/index.tsx";
@@ -72,6 +73,12 @@ const router = createBrowserRouter([
       {
         path: "/bettinglist",
         element: <BettingList/>
+      },
+      
+      // default Main Page
+      {
+        path: "/",
+        element: <App />
       }
       
     ]
