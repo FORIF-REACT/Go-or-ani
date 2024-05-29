@@ -15,6 +15,7 @@ import Profile from "./pages/profile/index.tsx";
 import Create from "./pages/create-betting/create.tsx"; 
 import Login from "./pages/login/index.tsx";
 import BettingList from './pages/betting-list/index.tsx';
+import Home from './pages/Home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
       // default Main Page
       {
         path: "/",
-        element: <App />
+        element: <Home />
       }
       
     ]
