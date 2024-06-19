@@ -55,7 +55,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 
     return(
       <>
-        <div className={`transition duration-${fade_in_duration} fixed z-998 w-screen h-screen ${isModalOpened ? "backdrop-blur" : ""} top-0 left-0`} ref={backdropRef}/>
+        <div className={`transition duration-${fade_in_duration} fixed z-998 w-screen h-screen ${isModalOpened ? "backdrop-brightness-[0.2]" : ""} top-0 left-0`} ref={backdropRef}/>
         <div className={`transition ${isModalOpened ? "opacity-100" : "opacity-0"} duration-${fade_in_duration} flex flex-col justify-start items-start w-[751px] h-[546px] gap-4 p-6 rounded-lg text-[#ffffff] bg-[#191919] border-4 border-[#75fbab] fixed top-1/2 left-1/2 z-999 -translate-x-1/2 -translate-y-1/2`}>
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[703px] text-[21px] font-semibold text-left ">
             {title}
