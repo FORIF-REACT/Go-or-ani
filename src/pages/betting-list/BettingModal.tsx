@@ -94,7 +94,19 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
             </div>
           }
 
-
+          <div className="flex justify-center w-full h-fit">
+           <div
+             className={`select-none transition h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
+               selectedOptionIndex == -1 ? "border-[#7a7a7a] text-[#7a7a7a]" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+             }`}
+             onClick={()=>{}}
+           >
+             <p className="w-full h-fit text-[21px] font-semibold text-center break-words">
+               베팅!
+             </p>
+           </div>
+           
+          </div>
         </div>
       </>
     );
@@ -129,6 +141,7 @@ function NarrowSelectionBox({content, optionIdx, isSelected, setSelectedOptionIn
     </div>
   );
 }
+
 
 function Slider({max, value, setBettingAmount}: {max:number, value:number, setBettingAmount:React.Dispatch<React.SetStateAction<number>>}) {
   const percentage = Math.trunc(value/max*100); //-webkit-slider-runnable-track의 배경 색 구분을 위한 퍼센티지 부분
