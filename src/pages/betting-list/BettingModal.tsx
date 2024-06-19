@@ -91,8 +91,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-      className={`select-none transition flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
-        isSelected ? "text-background-black-950 bg-[#d9d9d9] border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:text-background-black-950 hover:bg-[#d9d9d9] hover:border-primary-green-300"
+    className={`select-none transition flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
+      isSelected ? "border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
