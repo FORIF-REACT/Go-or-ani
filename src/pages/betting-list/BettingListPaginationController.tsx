@@ -23,7 +23,7 @@ return(
 function PageBtn({isClicked, pageNum, setStateCallback} : {isClicked:boolean, pageNum:number, setStateCallback:React.Dispatch<React.SetStateAction<number>>}) {
     return(
       <div className={`transition cursor-pointer flex justify-center items-center flex-grow-0 flex-shrink-0 w-10 h-10 relative gap-2.5 p-2.5 rounded-lg ${
-            isClicked ? "bg-[#875ff6] border border-slate-200" : "hover:bg-[#875ff6]"
+            isClicked ? "bg-[#875ff6] " : "hover:bg-[#875ff6]"
         }`}
         onClick={()=>{setStateCallback(pageNum)}}
       >
