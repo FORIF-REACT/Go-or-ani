@@ -55,8 +55,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 
     return(
       <>
-        <div className={`transition duration-${fade_in_duration} fixed z-998 w-screen h-screen ${isModalOpened ? "backdrop-blur" : ""} top-0 left-0`} ref={backdropRef}/>
-        <div className={`transition ${isModalOpened ? "opacity-100" : "opacity-0"} duration-${fade_in_duration} flex flex-col justify-start items-start w-[751px] h-[546px] gap-4 p-6 rounded-lg text-[#ffffff] bg-[#191919] border-4 border-[#75fbab] fixed top-1/2 left-1/2 z-999 -translate-x-1/2 -translate-y-1/2`}>
+        <div className={`transition duration-${fade_in_duration} fixed z-998 w-screen h-screen ${isModalOpened ? "backdrop-brightness-[0.2]" : ""} top-0 left-0`} ref={backdropRef}/>
+        <div className={`transition ${isModalOpened ? "opacity-100" : "opacity-0"} duration-${fade_in_duration} flex flex-col justify-start items-start w-[751px] h-fit gap-4 p-6 rounded-lg text-[#ffffff] bg-[#191919] border-4 border-[#75fbab] fixed top-1/2 left-1/2 z-999 -translate-x-1/2 -translate-y-1/2`}>
           <p className="self-stretch flex-grow-0 flex-shrink-0 w-[703px] text-[21px] font-semibold text-left ">
             {title}
           </p>
@@ -71,17 +71,41 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
               </p>
             </div>
           </div>
-          <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[450px] relative gap-1">
+          <div className="flex justify-start items-center flex-shrink-0 w-[450px] relative gap-1">
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">1시간 32분 후 마감</p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white"> · </p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{participants}명 참여</p>
           </div>
       
           {/* 스크롤바 부분 */}
-          <Slider max={5000} value={bettingAmount} setBettingAmount={setBettingAmount}/>
-          <div className="flex justify-center items-center self-stretch flex-grow-0 gap-1 h-full">
-            <WideSelectionBox content={selections[0]} optionIdx={0} isSelected={selectedOptionIndex==0}  setSelectedOptionIndex={setSelectedOptionIndex}/>
-            <WideSelectionBox content={selections[1]} optionIdx={1} isSelected={selectedOptionIndex==1} setSelectedOptionIndex={setSelectedOptionIndex}/>
+          <Slider max={5000} value={bettingAmount} setBettingAmount={setBettingAmount}></Slider>
+          {
+            (selections.length >= 3) ? 
+            <div className="flex-col justify-center items-center self-stretch flex-grow-0 gap-1 space-y-1.5 h-fit">
+              {selections.map((s, index)=>(
+                <NarrowSelectionBox content={s} optionIdx={index} isSelected={selectedOptionIndex==index} setSelectedOptionIndex={setSelectedOptionIndex}></NarrowSelectionBox>
+              ))}
+            </div>
+            :
+            <div className="flex justify-center items-center self-stretch flex-grow-0 gap-1 h-[260px]">
+              {selections.map((s, index)=>(
+                <WideSelectionBox content={s} optionIdx={index} isSelected={selectedOptionIndex==index}  setSelectedOptionIndex={setSelectedOptionIndex}/>
+              ))}
+            </div>
+          }
+
+          <div className="flex justify-center w-full h-fit">
+           <div
+             className={`select-none transition h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
+               selectedOptionIndex == -1 ? "border-[#7a7a7a] text-[#7a7a7a]" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+             }`}
+             onClick={()=>{}}
+           >
+             <p className="w-full h-fit text-[21px] font-semibold text-center break-words">
+               베팅!
+             </p>
+           </div>
+           
           </div>
         </div>
       </>
@@ -91,8 +115,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-      className={`select-none transition flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
-        isSelected ? "text-background-black-950 bg-[#d9d9d9] border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:text-background-black-950 hover:bg-[#d9d9d9] hover:border-primary-green-300"
+    className={`select-none transition flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
+      isSelected ? "border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
@@ -102,6 +126,22 @@ function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionInde
     </div>
   );
 }
+
+function NarrowSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
+  return (
+    <div
+    className={`select-none transition h-fit w-full gap p-1 rounded-md border-4 ${
+      isSelected ? "border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+      }`}
+      onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
+    >
+      <p className="self-stretch w-full h-fit text-[21px] font-semibold text-center break-words">
+        {content}
+      </p>
+    </div>
+  );
+}
+
 
 function Slider({max, value, setBettingAmount}: {max:number, value:number, setBettingAmount:React.Dispatch<React.SetStateAction<number>>}) {
   const percentage = Math.trunc(value/max*100); //-webkit-slider-runnable-track의 배경 색 구분을 위한 퍼센티지 부분
