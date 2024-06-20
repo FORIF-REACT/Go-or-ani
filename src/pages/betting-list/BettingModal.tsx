@@ -20,6 +20,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
     const fade_in_duration: number = 300;
     // 모달창 백드롭
     const backdropRef:React.MutableRefObject<HTMLDivElement|null> = useRef<HTMLDivElement|null>(null);
+    
     // 얼마만큼의 배추를 베팅하는지의 useState
     const [bettingAmount, setBettingAmount] = useState<number>(0);
     // slider내에서 값 변경시 setBettingAmount를 사용해서 변경하는 함수
@@ -44,7 +45,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
       const timer = setTimeout(()=>{
         document.addEventListener("keydown", escKeyCloseModal);
         if(backdropRef.current !== null) {
-          backdropRef.current.onclick = closeModalInner;
+          backdropRef.current.onmousedown = closeModalInner;
         }
       }, fade_in_duration-1);
       return ()=>{
@@ -86,15 +87,16 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
               배추 {bettingAmount} 개 베팅함!
             </p>
           </div>
+
           {
             (selections.length >= 3) ? 
-            <div className="flex-col justify-center items-center self-stretch flex-grow-0 gap-1 space-y-1.5 h-fit">
+            <div className="flex-col justify-center items-center self-stretch flex-grow-0 gap-1 space-y-3 h-fit">
               {selections.map((s, index)=>(
                 <NarrowSelectionBox content={s} optionIdx={index} isSelected={selectedOptionIndex==index} setSelectedOptionIndex={setSelectedOptionIndex}></NarrowSelectionBox>
               ))}
             </div>
             :
-            <div className="flex justify-center items-center self-stretch flex-grow-0 gap-1 h-[260px]">
+            <div className="flex justify-center items-center self-stretch flex-grow-0 gap-4 h-[260px]">
               {selections.map((s, index)=>(
                 <WideSelectionBox content={s} optionIdx={index} isSelected={selectedOptionIndex==index}  setSelectedOptionIndex={setSelectedOptionIndex}/>
               ))}
@@ -103,8 +105,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 
           <div className="flex justify-center w-full h-fit">
            <div
-             className={`select-none transition h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
-               selectedOptionIndex == -1 ? "border-[#7a7a7a] text-[#7a7a7a]" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+             className={`select-none transition-all h-full w-[330px] gap-4 p-[17px] rounded-md outline ${
+               selectedOptionIndex == -1 ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[6px] outline-primary-purple-500 hover:outline-primary-green-300"
              }`}
              onClick={()=>{}}
            >
@@ -122,8 +124,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-    className={`select-none transition flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[330px] gap-4 p-[17px] rounded-md border-4 ${
-      isSelected ? "border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+    className={`select-none transition-all flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[320px] gap-4 p-[17px] rounded-md outline ${
+      isSelected ? "outline-primary-green-300 outline-[6px]" : "cursor-pointer text-white bg-background-black-950 outline-primary-purple-500 outline-4 hover:outline-[6px] hover:outline-primary-green-300"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
@@ -137,8 +139,8 @@ function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionInde
 function NarrowSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-    className={`select-none transition h-fit w-full gap p-1 rounded-md border-4 ${
-      isSelected ? "border-primary-green-300" : "cursor-pointer text-white bg-background-black-950 border-4 border-primary-purple-500 hover:border-primary-green-300"
+    className={`select-none transition-all h-fit w-full gap p-1 rounded-md outline ${
+      isSelected ? "outline-primary-green-300 outline-[6px]" : "cursor-pointer text-white bg-background-black-950 outline-4 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[6px]"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
@@ -175,7 +177,7 @@ const Slider = React.forwardRef<
     <SliderPrimitive.Track className="cursor-ew-resize relative h-3 w-full grow overflow-hidden rounded-full bg-secondary">
       <SliderPrimitive.Range className="absolute h-full bg-primary-green-300" />
     </SliderPrimitive.Track>
-    <SliderPrimitive.Thumb className="cursor-ew-resize block h-7 w-7 rounded-full border-4 border-primary bg-[#d9d9d9] ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
+    <SliderPrimitive.Thumb className="cursor-ew-resize block h-7 w-7 rounded-full border-4 border-primary bg-[#d9d9d9] ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
   </SliderPrimitive.Root>
 ))
 Slider.displayName = SliderPrimitive.Root.displayName
