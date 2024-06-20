@@ -129,7 +129,7 @@ function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionInde
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
-      <p className="self-stretch w-full h-fit text-[21px] font-semibold text-center break-words">
+      <p className="self-stretch w-full h-fit text-[21px] font-semibold text-center break-keep">
         {content}
       </p>
     </div>
@@ -144,7 +144,7 @@ function NarrowSelectionBox({content, optionIdx, isSelected, setSelectedOptionIn
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
-      <p className="self-stretch w-full h-fit text-[21px] font-semibold text-center break-words">
+      <p className="self-stretch w-full h-fit text-[21px] font-semibold text-center break-keep">
         {content}
       </p>
     </div>

@@ -20,7 +20,7 @@ export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {
       >
         <div className="flex flex-col justify-start items-start self-stretch flex-grow relative gap-1">
             <div className="self-stretch w-[296px] h-[102px] text-[21px] font-semibold text-center break-words flex justify-center items-center">
-                <p className="break-words w-full">
+                <p className="w-full break-keep">
                     {title}
                 </p>
             </div>
