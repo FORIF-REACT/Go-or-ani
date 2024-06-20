@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Seongjinemong",
+      "summary": "안녕하세요 저는 성진입니다!!",
+      "point": 2000,
+      "num_of_host_ticket": 5
+    }
+  ],
+  "betting": [
+    {
+      "id": "1",
+      "title": "부먹과 찍먹, 당신의 선택은?",
+      "host_id": "1",
+      "deadline": "1713735000000",
+      "type": 0,
+      "options": [
+        "부먹",
+        "찍먹"
+      ],
+      "players_id": [
+        {
+          "1": 2000
+        }
+      ]
+    }
+  ]
+}
