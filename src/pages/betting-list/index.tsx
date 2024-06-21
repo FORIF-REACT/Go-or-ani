@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 
 // 디버그용 베팅 카드 리스트
 const betting_card_lists: BettingInfoDto[] = [
-  {"id": 1, "title": "무야호", "username": "김 아무개", "time": (new Date("1972-11-21 10:40")).getTime(), "participants": 523, "img_src": "https://www.w3schools.com/html/pic_trulli.jpg", selections: ["무한", "무야호", "엄마 나 이번에", "퇴비쌓기 올리기 1등했어요", "와우", "며ㅑ오ㅕㅁ노여ㅑㅁ녕며ㅑ오"]}, 
+  {"id": 1, "title": "무야호", "username": "김 아무개", "time": (new Date("1972-11-21 10:40")).getTime(), "participants": 523, "img_src": "https://www.w3schools.com/html/pic_trulli.jpg", selections: ["무한", "무야호", "엄마 나 이번에", "퇴비쌓기 올리기 1등했어요", "와우", "Never say never"]}, 
   {"id": 2, "title": "더 극혐인거 고르기 : 민트초코 vs 하와이안 피자", "username": "에이다 러브레이스", "time": (new Date("2024-03-14 21:14")).getTime(), "participants": 1111, "img_src": "https://www.w3schools.com/html/img_girl.jpg", selections: ["민트초코", "하와이안 피자", "민트초코 하와이안 피자"]}, 
   {"id": 3, "title": "사나이 눈물", "username": "김 아무개", "time": (new Date("1972-11-21 10:40")).getTime(), "participants": 523, "img_src": "https://www.w3schools.com/html/img_chania.jpg", selections: ["약하다", "욕하지마"]},  
   {"id": 4, "title": "최고의 휴양지 고르기 : 몰디브 vs 발리", "username": "제임스 본드", "time": (new Date("2023-05-21 14:00")).getTime(), "participants": 789, "img_src": "https://www.w3schools.com/html/pic_trulli.jpg", selections: ["몰디브", "발리"]}, 
@@ -41,12 +41,14 @@ export default function BettingList() {
       현재 진행중인 베팅 목록
     </p>
     <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>
-    <div className="flex  justify-start items-start self-stretch flex-wrap h-fit gap-2.5">
-      {
-        betting_card_lists.map((obj)=>(
-          <BettingCard key={obj.id} bettingInfoDto={obj} setSelectedBettingInfo={setSelectedBettingInfo}/>
-        ))
-      }
+    <div className="flex justify-center items-start self-stretch flex-wrap h-fit gap-2.5">
+      <div className="w-[1000px] h-fit flex justify-start items-start gap-3 flex-wrap">
+        {
+          betting_card_lists.map((obj)=>(
+            <BettingCard key={obj.id} bettingInfoDto={obj} setSelectedBettingInfo={setSelectedBettingInfo}/>
+          ))
+        }
+      </div>
     </div>
     <BettingListPaginationController idx={pageIndex} lastIdx={20} setIdx={setPageIndex}/>
     {selectedBettingInfo && (<BettingModal selectedBettingInfo={selectedBettingInfo} setSelectedBettingInfo={setSelectedBettingInfo}/>)}
