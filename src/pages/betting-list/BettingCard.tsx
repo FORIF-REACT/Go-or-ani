@@ -16,7 +16,14 @@ export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {
       <div
         className={`select-none cursor-pointer transition-all  flex justify-start items-start flex-grow-0 flex-shrink-0 w-[325px] h-[175px] gap-4 p-[17px] rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9]`}
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
-        onClick={()=>{setSelectedBettingInfo(bettingInfoDto);}}
+        onClick={()=>{
+          if(bettingInfoDto.deadline < Date.now()) {
+            location.href = location.href = `/result/${bettingInfoDto.id}`;
+          }else {
+            setSelectedBettingInfo(bettingInfoDto);
+          }
+
+        }}
       >
         <div className="flex flex-col justify-start items-start self-stretch flex-grow relative gap-1">
             <div className="self-stretch w-[296px] h-[102px] text-[21px] font-semibold text-center break-words flex justify-center items-center">

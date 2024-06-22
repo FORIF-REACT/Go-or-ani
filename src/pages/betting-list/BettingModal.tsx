@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { BettingInfoDto } from "./BettingInfoDto";
 import * as SliderPrimitive from "@radix-ui/react-slider"
 import { cn } from "@/lib/utils"
+import { API_URL } from "./constants";
+import axios from "axios";
+import { BettingInfoDtoFromDB } from "./BettingInfoDtoFromDB";
 
 // Props에 타입지정하려고 적음
 interface BettingModalProps {
@@ -10,7 +13,7 @@ interface BettingModalProps {
   }
 
 export default function BettingModal({selectedBettingInfo, setSelectedBettingInfo} : BettingModalProps) {
-    const {title, img_src, username, participants, time, selections, deadline} = selectedBettingInfo;
+    const {title, img_src, username, participants, time, selections, deadline, id} = selectedBettingInfo;
     // 선택된 선택지 index
     const [selectedOptionIndex, setSelectedOptionIndex] = useState<number>(-1);
     // 모달창이 서서히 열리고 닫히는 애니메이션을 위한 useState (모달 창이 열린 상태인가 아닌가)
@@ -23,7 +26,13 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
     
     // 얼마만큼의 배추를 베팅하는지의 useState
     const [bettingAmount, setBettingAmount] = useState<number>(0);
-    // slider내에서 값 변경시 setBettingAmount를 사용해서 변경하는 함수
+    // 가진 배추가 얼마정도인지의 useState
+    const [money, setMoney] = useState<number>(-1);
+
+    // 접속한 유저의 id
+    const [my_id, setMyID] = useState<string|null>(null);
+    // 재렌더링떄매 API 다시 호출하는거 막기 위한 useState
+    const [dbData, setDBData] = useState<BettingInfoDtoFromDB|null>(null);
 
     // 조건 확인 없이 모달 닫기
     const closeModalInner = ()=>{
@@ -40,7 +49,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
     }
 
     // 컴포넌트 마운트 시 실행 (모달 창 열렸을 때 isModalOpened를 true로 바꾸고, 나머지는 기본값으로 하기 위함)
-    useEffect(()=>{
+    useEffect(() =>{
       setIsModalOpened(true);
       const timer = setTimeout(()=>{
         document.addEventListener("keydown", escKeyCloseModal);
@@ -48,6 +57,41 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
           backdropRef.current.onmousedown = closeModalInner;
         }
       }, fade_in_duration-1);
+      
+      // API 사용하는 부분 여기에
+      (async ()=>{
+        try{
+          // DB데이터 가지고 오기
+          if(dbData === null) {
+            const betting_card_from_DB: BettingInfoDtoFromDB = (await axios.get(`${API_URL}/betting/${id}`)).data;
+            setDBData(betting_card_from_DB);
+          }
+
+          /*
+          // 로그인 확인
+          if(my_id === null) {
+            let user_id: string|null = null;
+            // @뭔가 API써서 로그인 확인함
+            
+            // @@디버그
+            user_id = "testuser001";
+            
+            if(user_id===null) {
+              alert("로그인되어 있지 않습니다!");
+              closeModalInner();
+            } else {
+              setMyID(user_id);              
+              // 돈 확인해서 setBettingAmount 설정
+              
+            }
+          }          
+        }
+
+        */
+        setMoney(1000); //@디버그
+      } catch {
+        alert("에러!");
+      }})(); 
       return ()=>{
         document.removeEventListener("keydown", escKeyCloseModal);
         setIsModalOpened(false);
@@ -55,6 +99,19 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
       }
     }, []);
 
+    // 이미 베팅했으면 결과창으로 강제로 보내기
+    (async()=>{
+      const betting_card_from_DB: BettingInfoDtoFromDB = (await axios.get(`${API_URL}/betting/${id}`)).data;
+      for(let i=0; i<betting_card_from_DB.players.length; i++){
+        if(betting_card_from_DB.players[i].id === my_id) {
+          location.href = `/result/${id}`;
+        }
+      }
+    })();
+
+    // @ 확인버튼 로직
+    // id가 null이면 아직 API쓴거 아니므로 확인버튼 안눌리게
+    // onclick에 async함수 사용
 
     return(
       <>
@@ -75,18 +132,30 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
             </div>
           </div>
           <div className="flex justify-start items-center flex-shrink-0 w-[450px] relative gap-1">
-            <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{timeDifference(Date.now(), deadline)}</p>
+            <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{timeDifference(deadline, Date.now())}</p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white"> · </p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{participants}명 참여</p>
           </div>
       
           {/* 스크롤바 부분 */}
-          <Slider defaultValue={[0]} max={5000} step={1} onValueChange={e => setBettingAmount(e[0])}/>
-          <div className="w-full flex justify-center">
-            <p className="select-none flex-grow-0 flex-shrink-0 text-[19px] font-bold text-left text-white h-fit">
-              배추 {bettingAmount} 개 베팅함!
-            </p>
-          </div>
+          {
+            (money >= 1) ?
+            <> 
+            <Slider defaultValue={[bettingAmount]} max={money} step={1} onValueChange={e => setBettingAmount(e[0])}/>
+            <div className="w-full flex justify-center">
+              <p className="select-none flex-grow-0 flex-shrink-0 text-[19px] font-bold text-left text-white h-fit">
+                배추 {bettingAmount} 개 베팅함!
+              </p>
+            </div>
+            </>
+            : 
+            <div className="w-full flex justify-center">
+              <p className="select-none flex-grow-0 flex-shrink-0 text-[19px] font-bold text-left text-white h-fit">
+                {money == -1 ? "로딩중" : "탕진했어용"}
+              </p>
+            </div>
+          }
+
 
           {
             (selections.length >= 3) ? 
@@ -106,9 +175,26 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
           <div className="flex justify-center w-full h-fit">
            <div
              className={`select-none transition-all h-full w-[330px] gap-4 p-[17px] rounded-md outline ${
-               selectedOptionIndex == -1 ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[6px] outline-primary-purple-500 hover:outline-primary-green-300"
+               (selectedOptionIndex == -1 || bettingAmount == 0) ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[6px] outline-primary-purple-500 hover:outline-primary-green-300"
              }`}
-             onClick={()=>{}}
+             onClick={undefined //디버그
+              /*async ()=>{
+              // my_id가 null인 경우에는 버튼 눌러도 반응 없게
+              if(my_id !== null && bettingAmount != 0) {
+                // BettingInfoDto의 id로 DB에서 실제로 조회 후, 이미 베팅 했으면 걍 결과창으로 보내기. 아니면 players에 추가 후 PUT하기
+                const betting_card_from_DB: BettingInfoDtoFromDB = (await axios.get(`${API_URL}/betting/${id}`)).data;
+                // players
+                for(let i=0; i<betting_card_from_DB.players.length; i++){
+                  if(betting_card_from_DB.players[i].id === my_id) {
+                    location.href = `/result/${id}`;
+                  }
+                }
+                
+                betting_card_from_DB.players.push({id: my_id, points:bettingAmount, bet_index:selectedOptionIndex});
+                await (axios.put(`${API_URL}/betting/${id}`, betting_card_from_DB));
+                location.href = `/result/${id}`;
+              }
+             }*/}
            >
              <p className="w-full h-fit text-[21px] font-semibold text-center break-words">
                베팅!

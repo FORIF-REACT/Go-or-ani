@@ -8,6 +8,7 @@ import BettingModal from "./BettingModal";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { convertBettingInfoDto } from "./ConvertBettingDtos";
+import { API_URL } from "./constants";
 
 // 디버그용 베팅 카드 리스트
 /*const betting_card_lists: BettingInfoDto[] = [
@@ -31,6 +32,7 @@ export default function BettingList() {
 
     // 정렬 기준
     const initial_sort:string = searchParams.get("sort")||"";
+
     const [orderCriterion, setOrderCriterion] = useState<string>(initial_sort);
     const [prevOrderCriterion, setPrevOrderCriterion] = useState<string>(initial_sort);
     /*
@@ -41,18 +43,18 @@ export default function BettingList() {
 		if high_stakes -> 무리
     */
     const sort_query_map : {[key:string] : string} = {
-      "" : `&deadline>${Date.now()}&_sort=created_date`,
-      "recent" : `&deadline>${Date.now()}&_sort=created_date`,
-      "ending_soon" : `&deadline>${Date.now()}&_sort=deadline`,
-      "high_engagement" : `&deadline>${Date.now()}&_sort=created_date`, //미구현
-      "high_stakes" : `&deadline>${Date.now()}&_sort=created_date`,     //미구현
+      "" : `&deadline_gt=${Date.now()}&_sort=created_date`,
+      "recent" : `&deadline_gt=${Date.now()}&_sort=created_date`,
+      "ending_soon" : `&deadline_gt=${Date.now()}&_sort=deadline`,
+      "high_engagement" : `&deadline_gt=${Date.now()}&_sort=created_date`, //미구현
+      "high_stakes" : `&deadline_gt=${Date.now()}&_sort=created_date`,     //미구현
+      "ended" : `&deadline_lt=${Date.now()}` // 종료된 베팅
     } 
-    
     
     // 유저 아이디
     const user_id:string = searchParams.get("user_id")||"";
     
-    // get으로 받아온 쿼리가 안 보이도록 삭제    
+    // get으로 받아온 쿼리가 안 보이도록 삭제 (user_id 제외)
     history.replaceState({}, "", user_id != "" ? `/bettinglist?user_id=${user_id}` : '/bettinglist');
     
     // 베팅 카드 DTO 객체의 리스트
@@ -66,19 +68,33 @@ export default function BettingList() {
     const [selectedBettingInfo, setSelectedBettingInfo] = useState<BettingInfoDto|null>(null);
     const [username_of_user_id, setUsernameOfUserID] = useState<string>("");
     const [lastIdx, setLastIdx] = useState<number>(-1);
+    // 접속한 유저의 id
+    const [my_id, setMyID] = useState<string|null>(null);
 
     useEffect(() => {
       (async() => {
-        try{
+        //try{
+        if(my_id === null) {
+          // @ API써서 ID 받아오는거 여기에 추가하라
+        }
+
         if(user_id == "") {
           if(betting_cards_list == null || prevIndex != pageIndex || prevOrderCriterion != orderCriterion) {
-            const betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`https://api.seongjinemong.app/betting?_page=${pageIndex}&_per_page=${PER_PAGE}${sort_query_map[orderCriterion]}`)).data.data;
+            const betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`${API_URL}/betting?_page=${pageIndex}&_per_page=${PER_PAGE}${sort_query_map[orderCriterion]}`)).data.data;
+            console.log(betting_card_from_DB_list);
             let bt_list : BettingInfoDto[] = [];
             for(let i=0; i<betting_card_from_DB_list.length; i++) 
             {
               const obj : BettingInfoDtoFromDB = betting_card_from_DB_list[i];
               const user_id_of_obj:number = obj.host_id;
-              const username_of_obj:string = (await axios.get(`https://api.seongjinemong.app/users/${user_id_of_obj}`)).data.username;
+              
+              let username_of_obj:string = "USER";
+              try {
+                username_of_obj = (await axios.get(`${API_URL}/users/${user_id_of_obj}`)).data.username;
+              }
+              catch {
+                console.log("유저정보 불러오기에 실패함")
+              }
               bt_list.push(convertBettingInfoDto(obj, username_of_obj, getRandomImageUrl(obj.host_id)));
             }
             setBettingCardList(bt_list);
@@ -91,13 +107,13 @@ export default function BettingList() {
           }
 
           if(lastIdx == -1) {
-            const all_betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`https://api.seongjinemong.app/betting`)).data;
+            const all_betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`${API_URL}/betting`)).data;
             setLastIdx( ~~((all_betting_card_from_DB_list.length - 1)/PER_PAGE) + 1 );
           }
         }
         else {
           if(username_of_user_id == "") {
-            setUsernameOfUserID((await axios.get(`https://api.seongjinemong.app/users/${user_id}`)).data.username);
+            setUsernameOfUserID((await axios.get(`${API_URL}/users/${user_id}`)).data.username);
           }
 
           if(betting_cards_list == null || prevIndex != pageIndex|| prevOrderCriterion != orderCriterion) {
@@ -107,36 +123,37 @@ export default function BettingList() {
             if(prevOrderCriterion != orderCriterion) {
               setPrevOrderCriterion(orderCriterion);
             }
-            const betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`https://api.seongjinemong.app/betting?_page=${pageIndex}&_per_page=${PER_PAGE}&host_id=${user_id}${sort_query_map[orderCriterion]}`)).data.data;
+            const betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`${API_URL}/betting?_page=${pageIndex}&_per_page=${PER_PAGE}&host_id=${user_id}${sort_query_map[orderCriterion]}`)).data.data;
             console.log("API 호출함!");
             let bt_list : BettingInfoDto[] = [];
             for(let i=0; i<betting_card_from_DB_list.length; i++) 
             {
               const obj : BettingInfoDtoFromDB = betting_card_from_DB_list[i];
               const user_id_of_obj:number = obj.host_id;
-              const username_of_obj:string = (await axios.get(`https://api.seongjinemong.app/users/${user_id_of_obj}`)).data.username;
+              const username_of_obj:string = (await axios.get(`${API_URL}/users/${user_id_of_obj}`)).data.username;
               bt_list.push(convertBettingInfoDto(obj, username_of_obj, getRandomImageUrl(obj.host_id)));
             }
             setBettingCardList(bt_list);
           }
 
           if(lastIdx == -1) {
-            const all_betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`https://api.seongjinemong.app/betting?host_id=${user_id}`)).data;
-            setLastIdx(all_betting_card_from_DB_list.length);
+            const all_betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`${API_URL}/betting?host_id=${user_id}`)).data;
+            setLastIdx( ~~((all_betting_card_from_DB_list.length - 1)/PER_PAGE) + 1 );
           }        
         }
-      } catch {
-        alert("에러!");
-      }
+      //} catch {
+      //  alert("에러!");
+      //}
       })();
     });
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">
     <p className="self-stretch flex-grow-0 flex-shrink-0 w-[1024px] h-[70px] text-[35px] font-bold text-left text-white">      
-      {user_id == "" ? "현재 진행중인 베팅 목록" : `유저 ${username_of_user_id}의 베팅목록`}
+      {orderCriterion == "ended" ? "종료된 베팅 " : (user_id == "" ? "현재 진행중인 베팅 목록" : `유저 ${username_of_user_id}의 베팅목록`)}
     </p>
-    <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>
+    { orderCriterion != "ended" && <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>}
+    
     <div className="flex justify-center items-start self-stretch flex-wrap h-fit gap-2.5">
       <div className="w-[1000px] h-fit flex justify-start items-start gap-3 flex-wrap">
         {
