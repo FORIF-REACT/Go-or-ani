@@ -13,7 +13,6 @@ import BetModify from "./pages/admin/BetModify.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 import Profile from "./pages/profile/index.tsx"; 
 import Create from "./pages/create-betting/create.tsx"; 
-import Login from "./pages/login/index.tsx";
 import BettingList from './pages/betting-list/index.tsx';
 import Home from './pages/Home/Home.tsx';
 
@@ -65,10 +64,10 @@ const router = createBrowserRouter([
       },
       
       // Login Page
-      {
-        path: "/login",
-        element: <Login />
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login />
+      // },
 
       //Betting List Page
       {
