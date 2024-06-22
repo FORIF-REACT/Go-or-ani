@@ -1,9 +1,9 @@
 type Rank = {
-  _id: string;
+  id: string;
   point: number;
-};
+}[];
 
-export default function Rank({ data }: { data: Rank[] }) {
+export default function Rank({ data }: { data: Rank }) {
   return (
     <div className="flex flex-col">
       {data.map((item, i) => {
@@ -12,7 +12,7 @@ export default function Rank({ data }: { data: Rank[] }) {
             <div className="basis-[10%] text-center text-xl font-bold pr-16">
               {i + 1}
             </div>
-            <div className="basis-[80%] text-xl font-bold">{item._id}</div>
+            <div className="basis-[80%] text-xl font-bold">{item.id}</div>
             <div className="basis-[15%] text-right text-xl font-bold">
               {item.point}
             </div>
