@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; //useeffec 추가하기!!~!!!
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // UserProfile 인터페이스 정의: 사용자 프로필 데이터 타입을 지정
