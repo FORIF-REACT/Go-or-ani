@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import './DateTimePickerCustom.css';
+import axios from 'axios';
 
 const Create = () => {
   const [optionsCount, setOptionsCount] = useState<number>(2);
   const [options, setOptions] = useState<string[]>(['', '']);
   const [time, setTime] = useState<Date | null>(new Date());
+  const [title, setTitle] = useState<string>('');
+  const [type, setType] = useState<number>(0);
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 프로그래밍 방식으로 페이지 이동
+
+  // response를 저장하는 애
+  const [response, setResponse] = useState<number | null>(null);
 
   const handleOptionsCountChange = (count: number) => {
     setOptionsCount(count);
@@ -26,6 +34,36 @@ const Create = () => {
     }
   };
 
+  const handleSubmit = async () => {
+    if (!time) return;
+
+    const data = {
+      
+      title: title,
+      host_id: "1", 
+      deadline: time.getTime(),
+      type: type,
+      options: options,
+      players: []
+    };
+
+    try {
+      const response = await axios.post('https://api.seongjinemong.app/betting/', data);
+      console.log('Betting created:', response.data);
+      setResponse(response.status);
+    } catch (error) {
+      console.error('Error creating betting:', error);
+      // 에러 처리 (예: 에러 메시지 표시)
+    }
+
+    if(response != 404) {
+      // 성공적으로 제출 후 진행중인 베팅 페이지로 이동
+      navigate('/bettinglist'); // 진행중인 베팅 페이지의 올바른 경로로 교체
+    } else {
+      alert('Error');
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
       <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid black', maxWidth: '990px' }}>
@@ -37,7 +75,13 @@ const Create = () => {
           
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">TITLE</label>
-            <input className="bg-white text-black p-2 rounded flex-grow" placeholder="제목을 입력하시오" style={{ color: 'black'}}/>
+            <input 
+              className="bg-white text-black p-2 rounded flex-grow" 
+              placeholder="제목을 입력하시오" 
+              value={title} 
+              onChange={(e) => setTitle(e.target.value)}
+              style={{ color: 'black'}}
+            />
           </div>
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">마감 시간 설정</label>
@@ -52,10 +96,15 @@ const Create = () => {
           </div>
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">산정 방식</label>
-            <select className="bg-white text-black p-2 rounded flex-grow" style={{ color: 'black'}}>
-              <option>주최자 임의 설정</option>
-              <option>포인트가 높은 것</option>
-              <option>사용자 수가 많은 것</option>
+            <select 
+              className="bg-white text-black p-2 rounded flex-grow" 
+              value={type.toString()} 
+              onChange={(e) => setType(parseInt(e.target.value))}
+              style={{ color: 'black'}}
+            >
+              <option value={0}>주최자 임의 설정</option>
+              <option value={1}>포인트가 높은 것</option>
+              <option value={2}>사용자 수가 많은 것</option>
             </select>
           </div>
           
@@ -97,6 +146,15 @@ const Create = () => {
             </div>
             ))}
           </div>
+        </div>
+        <div className="flex justify-center">
+          <button 
+            onClick={handleSubmit} 
+            className="bg-primary-green-400 hover:bg-primary-green-300 rounded py-2 px-4" 
+            style = {{color: 'black'}}
+          >
+            등록
+          </button>
         </div>
       </div>
     </div>
