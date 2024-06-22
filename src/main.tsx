@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './Fonts/Font.css';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BettingResult from "./pages/betting-result/index.tsx";
@@ -14,6 +15,7 @@ import Profile from "./pages/profile/index.tsx";
 import Create from "./pages/create-betting/create.tsx"; 
 import Login from "./pages/login/index.tsx";
 import BettingList from './pages/betting-list/index.tsx';
+import Home from './pages/Home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,12 @@ const router = createBrowserRouter([
       {
         path: "/bettinglist",
         element: <BettingList/>
+      },
+      
+      // default Main Page
+      {
+        path: "/",
+        element: <Home />
       }
       
     ]
