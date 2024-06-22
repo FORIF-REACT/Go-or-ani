@@ -3,7 +3,7 @@ export type BettingInfoDtoFromDB = {
     title: string;
     host_id: number;
     created_date: string;
-    players: {[key : string]:number}[];
+    players: {id:string, points:number, bet_index:number}[];
 	options: string[];
     deadline: number;
 }

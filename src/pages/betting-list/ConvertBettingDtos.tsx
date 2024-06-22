@@ -10,6 +10,6 @@ export function convertBettingInfoDto(dbData: BettingInfoDtoFromDB, username: st
         participants: dbData.players.length,
         img_src: img_src,
         selections: dbData.options,
-        deadline: dbData.deadline
+        deadline: dbData.deadline,
     };
 }
