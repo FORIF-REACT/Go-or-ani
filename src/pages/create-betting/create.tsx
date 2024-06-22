@@ -1,14 +1,13 @@
-
-
 import React, { useState } from 'react';
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
-
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import './DateTimePickerCustom.css';
 
 const Create = () => {
   const [optionsCount, setOptionsCount] = useState<number>(2);
   const [options, setOptions] = useState<string[]>(['', '']);
-  const [time, setTime] = useState('10:00');
+  const [time, setTime] = useState<Date | null>(new Date());
 
   const handleOptionsCountChange = (count: number) => {
     setOptionsCount(count);
@@ -20,44 +19,40 @@ const Create = () => {
     newOptions[index] = value;
     setOptions(newOptions);
   };
-  
-  const handleTimeChange = (newTime: string | null) => {
-    if (newTime !== null) {
+
+  const handleTimeChange = (newTime: Date | Date[] | null) => {
+    if (newTime instanceof Date) {
       setTime(newTime);
     }
   };
-  
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid #75fbab', maxWidth: '990px' }}>
-        <h1 className="text-white text-2xl text-center mb-8">베팅 만들기</h1>
+      <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid black', maxWidth: '990px' }}>
+        <h1 className="text-white text-4xl font-black mb-10">베팅 만들기</h1>
         
         {/* 기본 정보 설정 섹션 */}
-        <div className="mb-10" style={{ border: '2px solid #875ff6', padding: '20px' }}>
-          <h2 className="text-white text-xl mb-4">기본 정보 설정</h2>
+        <h2 className="text-white text-xl mb-4 font-black">기본 정보 설정</h2>
+        <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
+          
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">TITLE</label>
             <input className="bg-white text-black p-2 rounded flex-grow" placeholder="제목을 입력하시오" style={{ color: 'black'}}/>
           </div>
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">마감 시간 설정</label>
-            <TimePicker 
+            <DateTimePicker 
               onChange={handleTimeChange} 
               value={time} 
               className="bg-white text-black p-2 rounded flex-grow" 
               disableClock={true} 
-              clearIcon={null} 
-              clockIcon={null} 
-              maxDetail="minute" 
-              hourPlaceholder="hh" 
-              minutePlaceholder="mm"
-              format="HH:mm"
+              format="yyyy-MM-dd HH:mm"
+              locale="ko-KR"
             />
           </div>
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">산정 방식</label>
             <select className="bg-white text-black p-2 rounded flex-grow" style={{ color: 'black'}}>
-              
               <option>주최자 임의 설정</option>
               <option>포인트가 높은 것</option>
               <option>사용자 수가 많은 것</option>
@@ -67,8 +62,9 @@ const Create = () => {
         </div>
         
         {/* 선택지 설정 섹션 */}
-        <div className="mb-10" style={{ border: '2px solid #875ff6', padding: '20px' }}>
-          <h2 className="text-white text-xl mb-4">선택지 설정</h2>
+        <h2 className="text-white text-xl mb-4 font-black">선택지 설정</h2>
+        <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
+          
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">선택지 개수</label>
             <div className="flex space-x-4">
@@ -108,10 +104,3 @@ const Create = () => {
 };
 
 export default Create;
-
-
-
-
-
-
-

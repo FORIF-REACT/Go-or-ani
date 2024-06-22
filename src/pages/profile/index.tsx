@@ -45,11 +45,11 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ border: '3px solid #875ff6', maxWidth: '990px', height: '566px' }}>
-      <div className="text-2xl text-white text-center p-2 font-bold " style={{ width: '100px', height: '40px' }}>Profile</div>
-      <div className="mt-5" style={{ border: '2px solid #875ff6', width: '650px', height: '140px' }}>
-  <div className="flex items-center h-full p-4 space-x-4"> 
-    <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">CN</div> {/* 아바타 */}
+    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ border: '3px solid black', maxWidth: '990px', height: '566px' }}>
+      <div className="text-2xl text-white text-center p-2 font-bold mx-20" style={{ width: '100px', height: '40px' }}>Profile</div>
+      <div className="mt-5 mx-20 rounded-lg" style={{ border: '2px solid #875ff6', width: '700px', height: '140px' }}>
+  <div className="flex items-center h-full p-4 space-x-4"  > 
+    <div className="w-12 h-12 rounded-full bg-primary-green-400 flex items-center justify-center" style={{color: 'black'}}>CN</div> 
           {editMode ? (
             <input
               type="text"
@@ -70,7 +70,7 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <div className="mt-5 justify-center" style={{ border: '2px solid #875ff6', width: '650px', height: '228px' }}>
+      <div className="mt-10 mx-20 justify-center rounded-lg" style={{ border: '2px solid #875ff6', width: '700px', height: '228px' }}>
         <div className="p-4">
           <div className="mb-4 flex items-center space-x-2">
             <label className="text-white">포인트:</label>
