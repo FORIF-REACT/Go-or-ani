@@ -6,7 +6,7 @@ import {
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import './index.css';
-import Login from ',/components/Login';
+import Login from './components/Login';
 
 const navigation = [
   { name: '진헹중인 베팅', href: '/bettinglist', current: false },

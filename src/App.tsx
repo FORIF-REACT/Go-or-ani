@@ -1,6 +1,6 @@
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import Top from "./top";
+import Top from "./navbar";
 
 function App() {
   return (
