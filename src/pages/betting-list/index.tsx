@@ -51,7 +51,6 @@ export default function BettingList() {
       "ended" : `&deadline_lt=${Date.now()}` // 종료된 베팅
     } 
     
-    
     // 유저 아이디
     const user_id:string = searchParams.get("user_id")||"";
     
@@ -82,6 +81,7 @@ export default function BettingList() {
         if(user_id == "") {
           if(betting_cards_list == null || prevIndex != pageIndex || prevOrderCriterion != orderCriterion) {
             const betting_card_from_DB_list: BettingInfoDtoFromDB[] = (await axios.get(`${API_URL}/betting?_page=${pageIndex}&_per_page=${PER_PAGE}${sort_query_map[orderCriterion]}`)).data.data;
+            console.log(betting_card_from_DB_list);
             let bt_list : BettingInfoDto[] = [];
             for(let i=0; i<betting_card_from_DB_list.length; i++) 
             {
