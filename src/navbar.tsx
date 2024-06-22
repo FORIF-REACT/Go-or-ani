@@ -6,6 +6,7 @@ import {
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import './index.css';
+import Login from ',/components/Login';
 
 const navigation = [
   { name: '진헹중인 베팅', href: '/bettinglist', current: false },
@@ -68,6 +69,7 @@ function Top() {
                 <Link to={`/profile/${userId}`} className="text-primary-green-300 hover:text-green-500">
                   Profile
                 </Link>
+                <Login />
               </div>
             </div>
           </div>
@@ -90,6 +92,9 @@ function Top() {
                   {item.name}
                 </DisclosureButton>
               ))}
+              <div className="mt-3">
+                <Login /> {/* 모바일 뷰에서의 Login 컴포넌트 */}
+            </div>
             </div>
           </DisclosurePanel>
           <div className="absolute bottom-0 left-0 right-0 h-0.5 gradient-line" />
