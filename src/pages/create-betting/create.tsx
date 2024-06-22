@@ -66,7 +66,7 @@ const Create = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid black', maxWidth: '990px' }}>
+      <div className="w-full max-w-4xl p-5 bg-black" style={{ maxWidth: '990px' }}>
         <h1 className="text-white text-4xl font-black mb-10">베팅 만들기</h1>
         
         {/* 기본 정보 설정 섹션 */}
