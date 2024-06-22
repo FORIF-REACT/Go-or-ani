@@ -29,12 +29,13 @@ const Create = () => {
   
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
-      <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid #75fbab', maxWidth: '990px' }}>
-        <h1 className="text-white text-2xl text-center mb-8">베팅 만들기</h1>
+      <div className="w-full max-w-4xl p-5 bg-black" style={{ border: '5px solid black', maxWidth: '990px' }}>
+        <h1 className="text-white text-4xl font-black mb-10">베팅 만들기</h1>
         
         {/* 기본 정보 설정 섹션 */}
-        <div className="mb-10" style={{ border: '2px solid #875ff6', padding: '20px' }}>
-          <h2 className="text-white text-xl mb-4">기본 정보 설정</h2>
+        <h2 className="text-white text-xl mb-4 font-black">기본 정보 설정</h2>
+        <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
+          
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">TITLE</label>
             <input className="bg-white text-black p-2 rounded flex-grow" placeholder="제목을 입력하시오" style={{ color: 'black'}}/>
@@ -67,8 +68,9 @@ const Create = () => {
         </div>
         
         {/* 선택지 설정 섹션 */}
-        <div className="mb-10" style={{ border: '2px solid #875ff6', padding: '20px' }}>
-          <h2 className="text-white text-xl mb-4">선택지 설정</h2>
+        <h2 className="text-white text-xl mb-4 font-black">선택지 설정</h2>
+        <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
+          
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">선택지 개수</label>
             <div className="flex space-x-4">
