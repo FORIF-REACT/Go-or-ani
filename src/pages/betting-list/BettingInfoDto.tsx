@@ -6,4 +6,5 @@ export type BettingInfoDto = {
     participants: number;
     img_src: string;
 	selections: string[];
+    deadline: number;
 }
