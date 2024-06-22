@@ -8,7 +8,7 @@
  */
 
 import Divider from "./Divider";
-import PercentageBar from "./PercentageBar";
+//import PercentageBar from "./PercentageBar";
 import Rank from "./Rank";
 import User from "./User";
 
@@ -81,7 +81,7 @@ export default function BettingResult() {
       {/*통계*/}
       <div className="text-4xl font-bold">{"통계"}</div>
 
-      <PercentageBar
+      {/* <PercentageBar
         title={"투표율 기준"}
         ratio={0.635}
         selections={["부먹", "찍먹"]}
@@ -90,7 +90,7 @@ export default function BettingResult() {
         title={"포인트 기준"}
         ratio={0.235}
         selections={["부먹", "찍먹"]}
-      />
+      /> */}
 
       <Divider/>
 

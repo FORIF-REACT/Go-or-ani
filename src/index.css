@@ -74,9 +74,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.gradient-line {
-    background-image: linear-gradient(to right, #86efac, #a855f7, #a855f7, #86efac);
-    background-size: 200% 100%;
-    animation: gradient 5s linear infinite;
-  }
