@@ -14,23 +14,23 @@ export default function BettingCardinHome({bettingInfoDto, setSelectedBettingInf
   
   return(
       <div
-        className="select-none cursor-pointer transition-all  flex justify-start items-start flex-grow-0 flex-shrink-0 w-[325px] h-[175px] gap-4 p-[17px] rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9]"
+        className="w-full h-full select-none cursor-pointer transition-all flex flex-col justify-between items-start rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9] p-4"
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
         onClick={()=>{setSelectedBettingInfo(bettingInfoDto);}}
       >
-        <div className="flex flex-col justify-start items-start self-stretch flex-grow relative gap-1">
-            <div className="self-stretch w-[296px] h-[102px] text-[21px] font-semibold text-center break-words flex justify-center items-center">
+        <div className="flex flex-col justify-start self-stretch flex-grow relative gap-4">
+            <div className="self-stretch font-bold text-4xl text-center break-words flex justify-center items-center mt-6">
                 <p className="w-full break-keep">
                     {title}
                 </p>
             </div>
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-3">
+            <div className="flex justify-start items-end relative gap-3 mt-auto">
             <img src={img_src} className="rounded-3xl w-11 h-11"/>
-            <div className="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 w-[230px] relative gap-1">
-              <p className="flex-grow-0 flex-shrink-0 w-[223px] text-xs text-left">
+            <div className="flex flex-col justify-center items-start relative self-stretch gap-1">
+              <p className="text-xs text-left">
                 {username}
               </p>
-              <p className="flex-grow-0 flex-shrink-0 w-[223px] text-xs text-left ">
+              <p className="text-xs text-left ">
                 {getTimeAgoString(time)} · {participants}명 참여
               </p>
             </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BettingCard from "../betting-list/BettingCard";
 import { BettingInfoDto } from "../betting-list/BettingInfoDto";
 import BettingModal from "../betting-list/BettingModal";
+import BettingCardinHome from "./BettingCardinHome";
 
 // 디버그용 베팅 카드 리스트
 const betting_card_lists: BettingInfoDto[] = [
@@ -97,15 +98,15 @@ function Home() {
       </div>
       <div className="flex flex-row items-center gap-4">
         <div className="basis-1/6" />
-        <div className="basis-4/6 h-60 rounded-md select-none cursor-pointer transition flex justify-between items-center gap-4 p-[17px] hover:bg-background-black-950 border-4 hover:border-primary-purple-500 bg-[#d9d9d9] border-primary-green-300 hover:text-[#d9d9d9] text-background-black-950 relative">
+        <div className="basis-4/6 h-60 rounded-md select-none cursor-pointer transition flex justify-between items-center relative">
           <button
             className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 text-2xl font-bold text-primary-green-300 hover:text-primary-purple-500 bg-opacity-50 bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
             onClick={goToPreviousCard}
           >
             ⟨
           </button>
-          <div className="flex-grow flex justify-center items-center">
-            <BettingCard
+          <div className="w-full h-full flex justify-center items-center">
+            <BettingCardinHome
               key={betting_card_lists[currentCardIndex].id}
               bettingInfoDto={betting_card_lists[currentCardIndex]}
               setSelectedBettingInfo={setSelectedBettingInfo}
@@ -126,36 +127,51 @@ function Home() {
           종료까지 {formatTime(timeLeft)}
         </div>
       </div>
+      {/* 마감 직전인 베팅 섹션 */}
       <div className="flex flex-row items-center gap-4">
         <div className="basis-1/6" />
         <div className="basis-5/6 text-xl text-primary-green-300 font-bold">
           마감 직전인 베팅
         </div>
       </div>
-      <div className="select-none cursor-pointer transition flex items-stretch flex-row h-40 gap-4">
+      <div className="select-none cursor-pointer transition flex items-stretch flex-row gap-4">
         <div className="basis-1/6" />
-        <button className="basis-2/6 rounded-md hover:bg-background-black-950 border-4 hover:border-primary-purple-500 bg-[#d9d9d9] border-primary-green-300 hover:text-[#d9d9d9] text-background-black-950">
-          01
-        </button>
-        <button className="basis-2/6 rounded-md hover:bg-background-black-950 border-4 hover:border-primary-purple-500 bg-[#d9d9d9] border-primary-green-300 hover:text-[#d9d9d9] text-background-black-950">
-          02
-        </button>
+        <div className="basis-2/6">
+          <BettingCard
+            bettingInfoDto={betting_card_lists[1]} // 임의로 선택한 베팅 정보
+            setSelectedBettingInfo={setSelectedBettingInfo}
+          />
+        </div>
+        <div className="basis-2/6">
+          <BettingCard
+            bettingInfoDto={betting_card_lists[2]} // 임의로 선택한 베팅 정보
+            setSelectedBettingInfo={setSelectedBettingInfo}
+          />
+        </div>
         <div className="basis-1/6" />
       </div>
+
+      {/* 최근 생성된 베팅 섹션 */}
       <div className="flex flex-row items-center gap-4">
         <div className="basis-1/6" />
         <div className="basis-5/6 text-xl text-primary-green-300 font-bold">
           최근 생성된 베팅
         </div>
       </div>
-      <div className="select-none cursor-pointer transition flex items-stretch flex-row h-40 gap-4">
+      <div className="select-none cursor-pointer transition flex items-stretch flex-row gap-4">
         <div className="basis-1/6" />
-        <button className="basis-2/6 rounded-md hover:bg-background-black-950 border-4 hover:border-primary-purple-500 bg-[#d9d9d9] border-primary-green-300 hover:text-[#d9d9d9] text-background-black-950">
-          01
-        </button>
-        <button className="basis-2/6 rounded-md hover:bg-background-black-950 border-4 hover:border-primary-purple-500 bg-[#d9d9d9] border-primary-green-300 hover:text-[#d9d9d9] text-background-black-950">
-          02
-        </button>
+        <div className="basis-2/6">
+          <BettingCard
+            bettingInfoDto={betting_card_lists[3]} // 임의로 선택한 베팅 정보
+            setSelectedBettingInfo={setSelectedBettingInfo}
+          />
+        </div>
+        <div className="basis-2/6">
+          <BettingCard
+            bettingInfoDto={betting_card_lists[4]} // 임의로 선택한 베팅 정보
+            setSelectedBettingInfo={setSelectedBettingInfo}
+          />
+        </div>
         <div className="basis-1/6" />
       </div>
       {selectedBettingInfo && (
@@ -164,6 +180,7 @@ function Home() {
           setSelectedBettingInfo={setSelectedBettingInfo}
         />
       )}
+      <div className="h-20"/>
     </div>
   );
 }
