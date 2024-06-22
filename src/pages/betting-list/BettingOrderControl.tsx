@@ -14,23 +14,22 @@ interface BettingOrderControlProps {
 export default function BettingOrderControl({clickedIndex, setClickedIndex} :BettingOrderControlProps) {
     // 정렬 기준의 key값 및 뜻 문자열
     // 0번째 요소가 key, 1번째 요소가 뜻
-    const sort_orders : {
-        "recent" : string, "ending_soon" : string, "high_engagement": string, "high_stakes": string, [prop:string]:string} = {
-        "recent" : "최근에 만들어진 순으로",
-        "ending_soon": "마감이 임박한 순으로",
-        "high_engagement": "참여도가 높은 순으로",
-        "high_stakes": "베팅 금액 높은 순으로"
-    } 
+    const sort_orders = [
+        ["recent", "최근에 만들어진 순으로"],
+        ["ending_soon", "마감이 임박한 순으로"],
+        ["high_engagement", "참여도가 높은 순으로"],
+        ["high_stakes", "베팅 금액 높은 순으로"],
+    ];
 
-    clickedIndex = (clickedIndex in sort_orders) == false ? Object.keys(sort_orders)[0] : clickedIndex;
+    clickedIndex = clickedIndex || sort_orders[0][0]; // clickedIndex가 falsey라면 sort_orders[0][0]가 됨
 
     return (
-      <div className="select-none flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[9px]">
+      <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[9px]">
         <p className="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">정렬 순서</p>
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 px-[5px] py-1 rounded-md bg-transparent border-4 border-[#875ff6] gap-1">
           {
-            Object.keys(sort_orders).map((key:string) => (
-              <BettingOrderControlButton key={key} Key={key} isClicked={clickedIndex===key} text={sort_orders[key]} setStateCallback={setClickedIndex}/>
+            sort_orders.map((pair) => (
+              <BettingOrderControlButton key={pair[0]} Key={pair[0]} isClicked={clickedIndex===pair[0]} text={pair[1]} setStateCallback={setClickedIndex}/>
             )
            )
           }
@@ -46,7 +45,7 @@ function BettingOrderControlButton({isClicked, Key, text, setStateCallback} : {i
   return(
     <div
     className={`transition flex justify-start items-start flex-grow-0 flex-shrink-0 relative px-3 py-1.5 rounded ${
-      isClicked ? 'bg-primary-purple-500 text-black' : 'cursor-pointer hover:text-black bg-transparent hover:bg-primary-green-300 text-white hover:text-background-black-950'
+      isClicked ? ' bg-white text-black' : 'cursor-pointer hover:bg-white hover:text-black bg-transparent text-white'
     }`}
     onClick={()=> setStateCallback(Key)}
   >

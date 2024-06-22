@@ -1,6 +1,3 @@
-import React from "react";
-import { BettingInfoDto } from "./BettingInfoDto";
-
 /**
  * 베팅 목록에서 각 베팅별 카드 부분  
  * title : 베팅의 제목  
@@ -9,14 +6,11 @@ import { BettingInfoDto } from "./BettingInfoDto";
  * participants : 몇 명 참여했는지  
  * img_src : 이미지 경로
  */
-export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {bettingInfoDto:BettingInfoDto, setSelectedBettingInfo:React.Dispatch<React.SetStateAction<BettingInfoDto|null>>}) {
-  const {title, username, time, participants, img_src} = bettingInfoDto;  
-  
-  return(
+export default function BettingCard({title, username, time, participants, img_src} : {title:string, username:string, time:number, participants:number, img_src:string}) {
+    return(
       <div
-        className="select-none cursor-pointer transition-all  flex justify-start items-start flex-grow-0 flex-shrink-0 w-[325px] h-[175px] gap-4 p-[17px] rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9]"
+        className="select-none cursor-pointer transition flex justify-start items-start flex-grow-0 flex-shrink-0 w-[330px] h-[180px] gap-4 p-[17px] rounded-md bg-background-black-950 border-4 border-primary-purple-500 hover:bg-[#d9d9d9] hover:border-primary-green-300 text-[#d9d9d9] hover:text-background-black-950"
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
-        onClick={()=>{setSelectedBettingInfo(bettingInfoDto);}}
       >
         <div className="flex flex-col justify-start items-start self-stretch flex-grow relative gap-1">
             <div className="self-stretch w-[296px] h-[102px] text-[21px] font-semibold text-center break-words flex justify-center items-center">
