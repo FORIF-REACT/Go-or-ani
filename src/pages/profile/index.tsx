@@ -45,10 +45,10 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-5 bg-black" style={{ border: '5px solid #75fbab', maxWidth: '990px', height: '566px' }}>
-      <div className="bg-[#875ff6] text-white text-center p-2" style={{ width: '107px', height: '40px' }}>Profile</div>
-      <div className="mt-5" style={{ border: '2px solid #75fbab', width: '650px', height: '140px' }}>
-  <div className="flex items-center h-full p-4 space-x-4"> {/* Flex 컨테이너 설정 */}
+    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ border: '3px solid #875ff6', maxWidth: '990px', height: '566px' }}>
+      <div className="text-2xl text-white text-center p-2 font-bold " style={{ width: '100px', height: '40px' }}>Profile</div>
+      <div className="mt-5" style={{ border: '2px solid #875ff6', width: '650px', height: '140px' }}>
+  <div className="flex items-center h-full p-4 space-x-4"> 
     <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">CN</div> {/* 아바타 */}
           {editMode ? (
             <input
@@ -60,31 +60,43 @@ const Profile = () => {
               style={{ color: 'black' }}
             />
           ) : (
-            <span className="text-white">{userProfile.userName}</span>
+            <span className="text-white flex-grow">{userProfile.userName}</span>
           )}
           <button 
             onClick={editMode ? handleSaveClick : handleEditClick}
-            className="bg-white px-4 py-2 rounded text-black hover:bg-primary-green-300"
+            className="bg-primary-green-400 px-4 py-2 rounded  hover:bg-primary-green-300" style={{ color: 'black'}}
           >
             {editMode ? 'Save' : 'Edit'}
           </button>
         </div>
       </div>
-      <div className="mt-5" style={{ border: '2px solid #75fbab', width: '650px', height: '228px' }}>
+      <div className="mt-5 justify-center" style={{ border: '2px solid #875ff6', width: '650px', height: '228px' }}>
         <div className="p-4">
           <div className="mb-4 flex items-center space-x-2">
             <label className="text-white">포인트:</label>
-            <input className="bg-white p-2 rounded" style={{ color: 'gray'}} value={userProfile.points} readOnly />
+            <input
+                className="flex-1 p-2 bg-background-black-950 transition-all rounded focus:outline-none "
+                type="text"
+                name="_id"
+                placeholder="_id"
+                disabled={true}
+              />
           </div>
           <div className="mb-4 flex items-center space-x-2">
             <label className="text-white">주최권:</label>
-            <input className="bg-white p-2 rounded" style={{ color: 'gray'}} value={userProfile.rightsOfHost} readOnly />
-            <button className="bg-[#875ff6] px-4 py-2 rounded text-white hover:bg-primary-purple-300">
+            <input
+                className="flex-1 p-2 bg-background-black-950 transition-all rounded focus:outline-none "
+                type="text"
+                name="_id"
+                placeholder="_id"
+                disabled={true}
+              />
+            <button className="bg-primary-green-400 px-4 py-2 rounded hover:bg-primary-green-300" style={{ color: 'black'}}>
               구매
             </button>
           </div>
         </div>
-        <button className="bg-[#875ff6] mt-5 px-4 py-2 rounded text-white hover:bg-primary-purple-300">
+        <button className="bg-primary-green-400 mt-5 px-4 py-2 rounded  hover:bg-primary-green-300 mx-4" style={{ color: 'black'}}>
         회원탈퇴
         </button>
       </div>
@@ -94,3 +106,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
