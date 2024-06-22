@@ -47,7 +47,7 @@ const router = createBrowserRouter([
 
       // bettingresult Page
       {
-        path: "/result",
+        path: "/result/:bettingId",
         element: <BettingResult />
       },
 
