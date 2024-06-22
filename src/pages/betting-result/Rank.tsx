@@ -4,9 +4,10 @@ type Rank = {
 }[];
 
 export default function Rank({ data }: { data: Rank }) {
+
   return (
     <div className="flex flex-col">
-      {data.map((item, i) => {
+      {data.sort().reverse().map((item, i) => {
         return (
           <div className="flex flex-row hover:bg-primary-green-300 hover:text-background-black-950 p-4 transition-all rounded-lg">
             <div className="basis-[10%] text-center text-xl font-bold pr-16">

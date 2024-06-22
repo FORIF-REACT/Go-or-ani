@@ -15,6 +15,7 @@ import PercentageBar from "./PercentageBar";
 import Rank from "./Rank";
 import User from "./User";
 import { useParams } from "react-router-dom";
+import PercentageBarpurple from "./PercentageBarpurple";
 
 // Rank TestCase
 // type Rank = {
@@ -87,6 +88,7 @@ export default function BettingResult() {
   const [data, setData] = useState<Betting | null>(null);
   const [host, setHost] = useState<User | null>(null);
   const [statistics, setStatistics] = useState<number[] | null>(null);
+  const [statistics_num, setStatistics_num] = useState<number[] | null>(null);
   const [userPoints, setUserPoints] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -116,19 +118,6 @@ export default function BettingResult() {
     }
   };
 
-  const calculateStatistics = (
-    players: { id: string; bet_index: number; point: number }[],
-    optionsLength: number
-  ) => {
-    const result = Array(optionsLength).fill(0);
-
-    for (const player of players) {
-      result[player.bet_index] += player.point;
-    }
-
-    setStatistics(result);
-  };
-
   const fetchHostData = async () => {
     try {
       setHost(null);
@@ -142,25 +131,23 @@ export default function BettingResult() {
     //setLoading(false);
   };
 
-  const calculateUserPoints = (
-    players: { id: string; bet_index: number; point: number }[]
+  const calculateStatistics = (
+    players: { id: string; bet_index: number; point: number }[],
+    optionsLength: number
   ) => {
-    const user = players.find((player) => player.id === "1");
-    if (user) {
-      const winnerPoints = statistics?.reduce((acc, cur) => acc + cur, 0) || 0;
-      const loserPoints = statistics
-        ? statistics.reduce(
-            (acc, cur, idx) => (idx !== user.bet_index ? acc + cur : acc),
-            0
-          )
-        : 0;
-      if (winnerPoints > 0 && loserPoints > 0) {
-        const userPoints = user.point * (winnerPoints / loserPoints);
-        setUserPoints(userPoints);
-      } else {
-        setUserPoints(user.point);
+    const pointsResult = Array(optionsLength).fill(0);
+    const votesResult = Array(optionsLength).fill(0);
+
+    for (const player of players) {
+      if(player.id == "10") {
+        setUserPoints(player.point)
       }
+      pointsResult[player.bet_index] += player.point;
+      votesResult[player.bet_index] += 1; // Add this line to count votes
     }
+
+    setStatistics(pointsResult);
+    setStatistics_num(votesResult); // Add this line to set votes statistics
   };
 
   useEffect(() => {
@@ -176,11 +163,11 @@ export default function BettingResult() {
 
   useEffect(() => {
     if (statistics) {
-      calculateUserPoints(data!.players);
+      calculateStatistics(data!.players, data!.options.length);
     }
   }, [statistics]);
 
-  return data && host && statistics ? (
+  return data && host && statistics && statistics_num ? (
     <div className="w-[1024px] mt-10 flex flex-col gap-8 mb-24">
       {/*제목과 기본 정보*/}
       <div className="text-4xl font-bold">{data.title}</div>
@@ -203,10 +190,10 @@ export default function BettingResult() {
 
       <PercentageBar
         title={"투표율 기준"}
-        ratio={statistics[0] / (statistics[0] + statistics[1])}
+        ratio={statistics_num[0] / (statistics_num[0] + statistics_num[1])}
         selections={data.options}
       />
-      <PercentageBar
+      <PercentageBarpurple
         title={"포인트 기준"}
         ratio={statistics[0] / (statistics[0] + statistics[1])}
         selections={data.options}
@@ -238,7 +225,7 @@ export default function BettingResult() {
       {/*가장 많은 포인트를 얻은 사용자*/}
       <div className="text-4xl font-bold">{"최다 포인트 획득 Top 10"}</div>
 
-      <Rank data={data.players.sort().slice(0, 10)} />
+      <Rank data={data.players.sort((a, b) => b.point - a.point).slice(0, 10)} />
     </div>
   ) : error ? (
     <div>404</div>

@@ -145,7 +145,7 @@ export default function BettingList() {
       //  alert("에러!");
       //}
       })();
-    });
+    }, [location.search]);
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">

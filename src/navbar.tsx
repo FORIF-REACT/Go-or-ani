@@ -10,9 +10,9 @@ import { useAuth } from './hooks/useAuth.tsx'; // useAuth 훅 import
 import { User } from 'firebase/auth';
 
 const navigation = [
-  { name: '진행중인 베팅', href: '/bettinglist', current: false },
-  { name: '종료된 베팅', href: '/result', current: false },
-  { name: '나의 베팅', href: '/create', current: false },
+  { name: '진헹중인 베팅', href: '/bettinglist', current: false },
+  { name: '종료된 베팅', href: '/bettinglist?sort=ended', current: false },
+  { name: '베팅 만들기', href: '/create', current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -22,6 +22,8 @@ function classNames(...classes: string[]) {
 function Navbar() {
   const { user, signIn, signOutUser } = useAuth(); // useAuth 훅 사용
   
+  console.log(user);
+
   return (
     <Disclosure as="nav" className="bg-background-black-950 relative">
       {({ open }) => (
@@ -53,11 +55,12 @@ function Navbar() {
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                            item.name === '나의 베팅'
+                            item.name === '베팅 만들기'
                             ? 'text-primary-purple-600 hover:bg-gray-700 hover:text-white'
                             : 'text-primary-green-300 hover:bg-gray-700 hover:text-white',
                             'rounded-md px-3 py-2 text-sm font-medium'
                         )}
+                        reloadDocument
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
@@ -99,7 +102,7 @@ function Navbar() {
                   as={Link}
                   to={item.href}
                   className={classNames(
-                    item.name === '나의 베팅'
+                    item.name === '베팅 만들기'
                     ? 'text-primary-purple-600 hover:bg-gray-700 hover:text-white'
                     : 'text-primary-green-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'

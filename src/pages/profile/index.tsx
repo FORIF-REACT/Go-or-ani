@@ -14,7 +14,7 @@ const Profile = () => {
   const { userId } = useParams<'userId'>(); // URL에서 userId 파라미터 추출
   const [userProfile, setUserProfile] = useState<UserProfile>({
     userId: userId || '',
-    userName: 'USER.123',
+    userName: '초치',
     points: 10000,
     rightsOfHost: 5,
   });
@@ -55,7 +55,7 @@ const Profile = () => {
       <div className="text-2xl text-white text-start p-2 font-bold mx-20" style={{ height: '40px' }}>나의 정보</div>
       <div className="mt-5 mx-20 rounded-lg" style={{ border: '2px solid #875ff6', width: '700px', height: '140px' }}>
         <div className="flex items-center h-full p-4 space-x-4">
-          <div className="w-12 h-12 rounded-full bg-primary-green-400 flex items-center justify-center" style={{ color: 'black' }}>CN</div> {/* 아바타 */}
+          <div className="w-12 h-12 rounded-full bg-primary-green-400 flex items-center justify-center overflow-hidden" style={{ color: 'black' }}><img src="https://lh3.googleusercontent.com/a/ACg8ocK_gFPT4XwrGGTsZlTsJl80PByiDTMrEQ9p51d-Ojxczh-_Z0qH=s96-c"/></div> {/* 아바타 */}
           {editMode ? (
             <input
               type="text"

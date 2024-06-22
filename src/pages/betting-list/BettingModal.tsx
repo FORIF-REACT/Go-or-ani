@@ -177,7 +177,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
              className={`select-none transition-all h-full w-[330px] gap-4 p-[17px] rounded-lg outline ${
                (selectedOptionIndex == -1 || bettingAmount == 0) ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[4px] outline-primary-purple-500 hover:outline-primary-green-300"
              }`}
-             onClick={undefined //디버그
+             onClick={closeModalInner //디버그
               /*async ()=>{
               // my_id가 null인 경우에는 버튼 눌러도 반응 없게
               if(my_id !== null && bettingAmount != 0) {
