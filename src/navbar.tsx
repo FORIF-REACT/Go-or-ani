@@ -6,7 +6,8 @@ import {
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import './index.css';
-import Login from './components/Login';
+import { useAuth } from './hooks/useAuth.tsx'; // useAuth 훅 import
+import { User } from 'firebase/auth';
 
 const navigation = [
   { name: '진헹중인 베팅', href: '/bettinglist', current: false },
@@ -18,9 +19,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Top() {
-  const userId = '123'; // 임시부여한 아이디
-
+function Navbar() {
+  const { user, signIn, signOutUser } = useAuth(); // useAuth 훅 사용
+  
   return (
     <Disclosure as="nav" className="bg-background-black-950 relative">
       {({ open }) => (
@@ -66,10 +67,26 @@ function Top() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link to={`/profile/${userId}`} className="text-primary-green-300 hover:text-green-500">
-                  Profile
-                </Link>
-                <Login />
+                {user ? (
+                  <>
+                    <Link to={`/profile/${(user as User).uid}`} className="text-primary-green-300 hover:text-green-500 mr-4">
+                      Profile
+                    </Link>
+                    <button
+                      onClick={signOutUser}
+                      className="text-primary-green-300 hover:text-green-500"
+                    >
+                      로그아웃
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={signIn}
+                    className="text-primary-green-300 hover:text-green-500"
+                  >
+                    구글로 로그인하기
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -85,7 +102,7 @@ function Top() {
                     item.name === '나의 베팅'
                     ? 'text-primary-purple-600 hover:bg-gray-700 hover:text-white'
                     : 'text-primary-green-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-sm font-medium'
+                    'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
@@ -93,7 +110,29 @@ function Top() {
                 </DisclosureButton>
               ))}
               <div className="mt-3">
-                <Login /> {/* 모바일 뷰에서의 Login 컴포넌트 */}
+              {user ? (
+                <>
+                  <Link
+                    to={`/profile/${(user as User).uid}`}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-primary-green-300 hover:text-white hover:bg-gray-700"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={signOutUser}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-primary-green-300 hover:text-white hover:bg-gray-700 w-full text-left"
+                  >
+                    로그아웃
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={signIn}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-primary-green-300 hover:text-white hover:bg-gray-700 w-full text-left"
+                >
+                  구글로 로그인하기
+                </button>
+              )}
             </div>
             </div>
           </DisclosurePanel>
@@ -104,4 +143,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default Navbar;

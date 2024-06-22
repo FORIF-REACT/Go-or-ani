@@ -15,6 +15,7 @@ import Profile from "./pages/profile/index.tsx";
 import Create from "./pages/create-betting/create.tsx"; 
 import BettingList from './pages/betting-list/index.tsx';
 import Home from './pages/Home/Home.tsx';
+import SignUp from './pages/sign-up/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -62,17 +63,17 @@ const router = createBrowserRouter([
         path: "/create",
         element: <Create />
       },
-      
-      // Login Page
-      // {
-      //   path: "/login",
-      //   element: <Login />
-      // },
 
       //Betting List Page
       {
         path: "/bettinglist",
         element: <BettingList/>
+      },
+      
+      //Sign Up Page
+      {
+        path: "signup",
+        element: <SignUp/>
       },
       
       // default Main Page
