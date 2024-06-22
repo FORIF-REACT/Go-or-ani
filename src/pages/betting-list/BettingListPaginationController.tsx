@@ -35,7 +35,7 @@ function PageBtn({isClicked, pageNum, setStateCallback} : {isClicked:boolean, pa
 function PrevBtn({onClick} : {onClick:()=>void}) {
     return(
         <div 
-            className="hover:bg-[#875ff6] transition cursor-pointer flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1 px-4 py-2 rounded-md"
+            className="hover:bg-[#875ff6] transition cursor-pointer flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1 px-4 py-2 rounded-lg"
             onClick={onClick}
         >
           <svg
@@ -63,7 +63,7 @@ function PrevBtn({onClick} : {onClick:()=>void}) {
 function NextBtn({onClick} : {onClick:()=>void}) {
     return(
         <div 
-            className="hover:bg-[#875ff6] transition cursor-pointer flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1 px-4 py-2 rounded-md"
+            className="hover:bg-[#875ff6] transition cursor-pointer flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1 px-4 py-2 rounded-lg"
             onClick={onClick}
         >
         <p className="flex-grow-0 flex-shrink-0 text-sm font-medium text-left text-white">이후</p>

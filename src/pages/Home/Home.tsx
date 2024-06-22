@@ -92,7 +92,7 @@ function Home() {
     <div className="w-[1024px] mt-10 flex flex-col gap-4">
       <div className="flex flex-row items-center gap-4">
         <div className="basis-1/6" />
-        <div className="basis-5/6 text-xl text-primary-green-300 font-bold">
+        <div className="basis-5/6 text-2xl text-primary-green-300 font-bold">
           실시간 인기 베팅
         </div>
       </div>
@@ -100,7 +100,7 @@ function Home() {
         <div className="basis-1/6" />
         <div className="basis-4/6 h-60 rounded-md select-none cursor-pointer transition flex justify-between items-center relative">
           <button
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 text-2xl font-bold text-primary-green-300 hover:text-primary-purple-500 bg-opacity-50 bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-100 text-2xl font-bold text-primary-green-300 hover:text-primary-purple-500 bg-opacity-50 bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
             onClick={goToPreviousCard}
           >
             ⟨
@@ -113,7 +113,7 @@ function Home() {
             />
           </div>
           <button
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 text-2xl font-bold text-primary-green-300 hover:text-primary-purple-500 bg-opacity-50 bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-100 text-2xl font-bold text-primary-green-300 hover:text-primary-purple-500 bg-opacity-50 bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
             onClick={goToNextCard}
           >
             ⟩

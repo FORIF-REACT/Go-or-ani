@@ -14,7 +14,7 @@ export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {
   
   return(
       <div
-        className={`select-none cursor-pointer transition-all  flex justify-start items-start flex-grow-0 flex-shrink-0 w-[325px] h-[175px] gap-4 p-[17px] rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9]`}
+        className={`select-none cursor-pointer transition-all  flex justify-start items-start flex-grow-0 flex-shrink-0 w-[325px] h-[175px] gap-4 p-[17px] rounded-lg bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[4px] text-white`}
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
         onClick={()=>{
           if(bettingInfoDto.deadline < Date.now()) {
@@ -32,7 +32,7 @@ export default function BettingCard({bettingInfoDto, setSelectedBettingInfo} : {
                 </p>
             </div>
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-3">
-            <img src={img_src} className="rounded-3xl w-11 h-11"/>
+            <img src={img_src} className="rounded-full w-11 h-11"/>
             <div className="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 w-[230px] relative gap-1">
               <p className="flex-grow-0 flex-shrink-0 w-[223px] text-xs text-left">
                 {username}

@@ -149,7 +149,7 @@ export default function BettingList() {
 
     return (
     <div className="flex flex-col justify-center items-start w-[1024px] relative overflow-hidden gap-4">
-    <p className="self-stretch flex-grow-0 flex-shrink-0 w-[1024px] h-[70px] text-[35px] font-bold text-left text-white">      
+    <p className="self-stretch flex-grow-0 flex-shrink-0 w-[1024px] h-[70px] text-2xl font-bold text-left text-white pt-6">      
       {orderCriterion == "ended" ? "종료된 베팅 " : (user_id == "" ? "현재 진행중인 베팅 목록" : `유저 ${username_of_user_id}의 베팅목록`)}
     </p>
     { orderCriterion != "ended" && <BettingOrderControl clickedIndex={orderCriterion} setClickedIndex={setOrderCriterion}/>}
