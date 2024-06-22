@@ -121,7 +121,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
             {title}
           </p>
           <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
-          <img src={img_src} className="rounded-3xl w-11 h-11"/>
+          <img src={img_src} className="rounded-full w-11 h-11"/>
             <div className="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 w-[637px] relative gap-1">
               <p className="flex-grow-0 flex-shrink-0 w-[223px] text-xs text-left ">
                 {username}
@@ -174,8 +174,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 
           <div className="flex justify-center w-full h-fit">
            <div
-             className={`select-none transition-all h-full w-[330px] gap-4 p-[17px] rounded-md outline ${
-               (selectedOptionIndex == -1 || bettingAmount == 0) ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[6px] outline-primary-purple-500 hover:outline-primary-green-300"
+             className={`select-none transition-all h-full w-[330px] gap-4 p-[17px] rounded-lg outline ${
+               (selectedOptionIndex == -1 || bettingAmount == 0) ? "outline-[#7a7a7a] text-[#7a7a7a] outline-4" : "cursor-pointer text-white bg-background-black-950 outline-4 hover:outline-[4px] outline-primary-purple-500 hover:outline-primary-green-300"
              }`}
              onClick={undefined //디버그
               /*async ()=>{
@@ -210,8 +210,8 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
 function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-    className={`select-none transition-all flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[320px] gap-4 p-[17px] rounded-md outline ${
-      isSelected ? "outline-primary-green-300 outline-[6px]" : "cursor-pointer text-white bg-background-black-950 outline-primary-purple-500 outline-4 hover:outline-[6px] hover:outline-primary-green-300"
+    className={`select-none transition-all flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-full w-[320px] gap-4 p-[17px] rounded-lg outline ${
+      isSelected ? "outline-primary-green-300 outline-[4px]" : "cursor-pointer text-white bg-background-black-950 outline-primary-purple-500 outline-4 hover:outline-[4px] hover:outline-primary-green-300"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >
@@ -225,8 +225,8 @@ function WideSelectionBox({content, optionIdx, isSelected, setSelectedOptionInde
 function NarrowSelectionBox({content, optionIdx, isSelected, setSelectedOptionIndex} : {content:string, optionIdx: number, isSelected:boolean, setSelectedOptionIndex:React.Dispatch<React.SetStateAction<number>>}) {
   return (
     <div
-    className={`select-none transition-all h-fit w-full gap p-1 rounded-md outline ${
-      isSelected ? "outline-primary-green-300 outline-[6px]" : "cursor-pointer text-white bg-background-black-950 outline-4 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[6px]"
+    className={`select-none transition-all h-fit w-full gap p-1 rounded-lg outline ${
+      isSelected ? "outline-primary-green-300 outline-[4px]" : "cursor-pointer text-white bg-background-black-950 outline-4 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[4px]"
       }`}
       onClick={()=>{if(!isSelected){setSelectedOptionIndex(optionIdx);}}}
     >

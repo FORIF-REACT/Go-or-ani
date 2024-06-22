@@ -51,8 +51,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ maxWidth: '990px', height: '566px' }}>
-      <div className="text-2xl text-white text-center p-2 font-bold mx-20" style={{ width: '100px', height: '40px' }}>Profile</div>
+    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-lg" style={{ maxWidth: '990px', height: '566px' }}>
+      <div className="text-2xl text-white text-start p-2 font-bold mx-20" style={{ height: '40px' }}>나의 정보</div>
       <div className="mt-5 mx-20 rounded-lg" style={{ border: '2px solid #875ff6', width: '700px', height: '140px' }}>
         <div className="flex items-center h-full p-4 space-x-4">
           <div className="w-12 h-12 rounded-full bg-primary-green-400 flex items-center justify-center" style={{ color: 'black' }}>CN</div> {/* 아바타 */}
@@ -62,7 +62,7 @@ const Profile = () => {
               placeholder="Enter the nickname"
               value={newUserName}
               onChange={handleChange}
-              className="bg-white placeholder-gray-500 p-2 rounded flex-grow"
+              className="bg-white placeholder-gray-500 p-2 rounded-lg flex-grow"
               style={{ color: 'black' }}
             />
           ) : (
@@ -70,9 +70,9 @@ const Profile = () => {
           )}
           <button
             onClick={editMode ? handleSaveClick : handleEditClick}
-            className="bg-primary-green-400 px-4 py-2 rounded hover:bg-primary-green-300" style={{ color: 'black' }}
+            className="bg-primary-green-400 px-4 py-2 rounded-lg hover:bg-primary-green-300" style={{ color: 'black' }}
           >
-            {editMode ? 'Save' : 'Edit'}
+            {editMode ? '저징' : '수정'}
           </button>
         </div>
       </div>
@@ -81,7 +81,7 @@ const Profile = () => {
           <div className="mb-4 flex items-center space-x-2">
             <label className="text-white">포인트:</label>
             <input
-              className="flex-1 p-2 bg-background-black-950 transition-all rounded focus:outline-none"
+              className="flex-1 p-2 bg-background-black-950 transition-all rounded-lg focus:outline-none"
               type="text"
               value={userProfile.points}
               readOnly
@@ -90,18 +90,18 @@ const Profile = () => {
           <div className="mb-4 flex items-center space-x-2">
             <label className="text-white">주최권:</label>
             <input
-              className="flex-1 p-2 bg-background-black-950 transition-all rounded focus:outline-none"
+              className="flex-1 p-2 bg-background-black-950 transition-all rounded-lg focus:outline-none"
               type="text"
               value={userProfile.rightsOfHost}
               readOnly
             />
-            <button className="bg-primary-green-400 px-4 py-2 rounded hover:bg-primary-green-300" style={{ color: 'black' }}>
+            <button className="bg-primary-green-400 px-4 py-2 rounded-lg hover:bg-primary-green-300" style={{ color: 'black' }}>
               구매
             </button>
           </div>
         </div>
-        <button onClick={handleWithdrawClick} className="bg-primary-green-400 mt-5 px-4 py-2 rounded hover:bg-primary-green-300 mx-4" style={{ color: 'black' }}>
-          회원탈퇴
+        <button onClick={handleWithdrawClick} className="bg-primary-green-400 mt-5 px-4 py-2 rounded-lg hover:bg-primary-green-300 mx-4" style={{ color: 'black' }}>
+          회원 탈퇴
         </button>
       </div>
       <WithdrawModal isOpen={isModalOpen} onClose={handleCloseModal} onConfirm={handleConfirmWithdraw} />

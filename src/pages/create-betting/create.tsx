@@ -67,16 +67,16 @@ const Create = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-black">
       <div className="w-full max-w-4xl p-5 bg-black" style={{ maxWidth: '990px' }}>
-        <h1 className="text-white text-4xl font-black mb-10">베팅 만들기</h1>
+        <h1 className="text-primary-green-300 text-2xl font-bold mb-10 pt-6">베팅 만들기</h1>
         
         {/* 기본 정보 설정 섹션 */}
-        <h2 className="text-white text-xl mb-4 font-black">기본 정보 설정</h2>
+        <h2 className="text-white text-xl mb-4 font-bold">기본 정보 설정</h2>
         <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
           
           <div className="mb-4 flex items-center">
-            <label className="text-white w-40">TITLE</label>
+            <label className="text-white w-40">제목</label>
             <input 
-              className="bg-white text-black p-2 rounded flex-grow" 
+              className="bg-white text-black p-2 rounded-lg flex-grow" 
               placeholder="제목을 입력하시오" 
               value={title} 
               onChange={(e) => setTitle(e.target.value)}
@@ -88,7 +88,7 @@ const Create = () => {
             <DateTimePicker 
               onChange={handleTimeChange} 
               value={time} 
-              className="bg-white text-black p-2 rounded flex-grow" 
+              className="bg-white text-black p-2 rounded-lg flex-grow" 
               disableClock={true} 
               format="yyyy-MM-dd HH:mm"
               locale="ko-KR"
@@ -97,7 +97,7 @@ const Create = () => {
           <div className="mb-4 flex items-center">
             <label className="text-white w-40">산정 방식</label>
             <select 
-              className="bg-white text-black p-2 rounded flex-grow" 
+              className="bg-white text-black p-2 rounded-lg h-10 flex-grow" 
               value={type.toString()} 
               onChange={(e) => setType(parseInt(e.target.value))}
               style={{ color: 'black'}}
@@ -110,8 +110,8 @@ const Create = () => {
           
         </div>
         
-        {/* 선택지 설정 섹션 */}
-        <h2 className="text-white text-xl mb-4 font-black">선택지 설정</h2>
+                {/* 선택지 설정 섹션 */}
+                <h2 className="text-white text-xl mb-4 font-bold">선택지 설정</h2>
         <div className="mb-10 rounded-lg" style={{ border: '2px solid #875ff6', padding: '20px' }}>
           
           <div className="mb-4 flex items-center">
@@ -150,7 +150,7 @@ const Create = () => {
         <div className="flex justify-center">
           <button 
             onClick={handleSubmit} 
-            className="bg-primary-green-400 hover:bg-primary-green-300 rounded py-2 px-4" 
+            className="bg-primary-green-400 hover:bg-primary-green-300 rounded-lg py-2 px-4" 
             style = {{color: 'black'}}
           >
             등록

@@ -10,7 +10,7 @@ import { useAuth } from './hooks/useAuth.tsx'; // useAuth 훅 import
 import { User } from 'firebase/auth';
 
 const navigation = [
-  { name: '진헹중인 베팅', href: '/bettinglist', current: false },
+  { name: '진행중인 베팅', href: '/bettinglist', current: false },
   { name: '종료된 베팅', href: '/result', current: false },
   { name: '나의 베팅', href: '/create', current: false },
 ];
@@ -70,7 +70,7 @@ function Navbar() {
                 {user ? (
                   <>
                     <Link to={`/profile/${(user as User).uid}`} className="text-primary-green-300 hover:text-green-500 mr-4">
-                      Profile
+                      초치 님
                     </Link>
                     <button
                       onClick={signOutUser}

@@ -14,7 +14,7 @@ export default function BettingCardinHome({bettingInfoDto, setSelectedBettingInf
   
   return(
       <div
-        className="w-full h-full select-none cursor-pointer transition-all flex flex-col justify-between items-start rounded-md bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[7px] text-[#d9d9d9] p-4"
+        className="w-full h-full select-none cursor-pointer transition-all flex flex-col justify-between items-start rounded-lg bg-background-black-950 outline outline-3 outline-primary-purple-500 hover:outline-primary-green-300 hover:outline-[4px] text-white p-4"
         style={{ boxShadow: "0px 4px 4px 0 rgba(174,174,174,0.25)" }}
         onClick={()=>{setSelectedBettingInfo(bettingInfoDto);}}
       >
@@ -25,7 +25,7 @@ export default function BettingCardinHome({bettingInfoDto, setSelectedBettingInf
                 </p>
             </div>
             <div className="flex justify-start items-end relative gap-3 mt-auto">
-            <img src={img_src} className="rounded-3xl w-11 h-11"/>
+            <img src={img_src} className="rounded-full w-11 h-11"/>
             <div className="flex flex-col justify-center items-start relative self-stretch gap-1">
               <p className="text-xs text-left">
                 {username}
