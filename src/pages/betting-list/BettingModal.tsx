@@ -10,7 +10,7 @@ interface BettingModalProps {
   }
 
 export default function BettingModal({selectedBettingInfo, setSelectedBettingInfo} : BettingModalProps) {
-    const {title, img_src, username, participants, time, selections} = selectedBettingInfo;
+    const {title, img_src, username, participants, time, selections, deadline} = selectedBettingInfo;
     // 선택된 선택지 index
     const [selectedOptionIndex, setSelectedOptionIndex] = useState<number>(-1);
     // 모달창이 서서히 열리고 닫히는 애니메이션을 위한 useState (모달 창이 열린 상태인가 아닌가)
@@ -75,7 +75,7 @@ export default function BettingModal({selectedBettingInfo, setSelectedBettingInf
             </div>
           </div>
           <div className="flex justify-start items-center flex-shrink-0 w-[450px] relative gap-1">
-            <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">1시간 32분 후 마감</p>
+            <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{timeDifference(Date.now(), deadline)}</p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white"> · </p>
             <p className="flex-grow-0 flex-shrink-0 text-[15px] text-left text-white">{participants}명 참여</p>
           </div>
@@ -160,6 +160,51 @@ function formatDate(milliseconds:number):string {
   const minutes = String(date.getMinutes()).padStart(2, '0');
 
   return `${year}.${month}.${day} ${hours}:${minutes}`;
+}
+
+function timeDifference(a_ms: number, b_ms: number): string {
+  // 밀리세컨드를 초로 변환
+  const a_seconds = a_ms / 1000;
+  const b_seconds = b_ms / 1000;
+  
+  // timestamp로 변환
+  const a_timestamp = new Date(a_seconds * 1000);
+  const b_timestamp = new Date(b_seconds * 1000);
+  
+  // 두 timestamp 사이의 차이 계산
+  const diff_ms = Math.abs(b_timestamp.getTime() - a_timestamp.getTime());
+  
+  // 차이를 milliseconds에서 년, 월, 일, 시간, 분으로 변환
+  const years = Math.floor(diff_ms / (1000 * 60 * 60 * 24 * 365));
+  const months = Math.floor((diff_ms % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+  const days = Math.floor((diff_ms % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff_ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff_ms % (1000 * 60 * 60)) / (1000 * 60));
+  
+  // 결과 문자열 생성
+  let result = "";
+  if (years > 0) {
+      result += `${years}년 `;
+  }
+  if (months > 0) {
+      result += `${months}개월 `;
+  }
+  if (days > 0) {
+      result += `${days}일 `;
+  }
+  if (hours > 0) {
+      result += `${hours}시간 `;
+  }
+  if (minutes > 0) {
+      result += `${minutes}분 `;
+  }
+  
+  // 결과 반환
+  if (result === "") {
+      return "곧 마감";  // 모든 값이 0인 경우
+  } else {
+      return result.trim() + "후 마감";
+  }
 }
 
 const Slider = React.forwardRef<

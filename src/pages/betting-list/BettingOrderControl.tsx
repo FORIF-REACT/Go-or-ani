@@ -25,8 +25,8 @@ export default function BettingOrderControl({clickedIndex, setClickedIndex} :Bet
     clickedIndex = (clickedIndex in sort_orders) == false ? Object.keys(sort_orders)[0] : clickedIndex;
 
     return (
-      <div className="select-none flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[9px]">
-        <p className="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">정렬 순서</p>
+      <div className="px-2 select-none flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[9px]">
+        {/*<p className="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">정렬 순서</p>*/} 
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 px-[5px] py-1 rounded-md bg-transparent border-4 border-[#875ff6] gap-1">
           {
             Object.keys(sort_orders).map((key:string) => (
