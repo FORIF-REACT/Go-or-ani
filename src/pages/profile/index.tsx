@@ -51,7 +51,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ border: '3px solid black', maxWidth: '990px', height: '566px' }}>
+    <div className="w-full max-w-4xl mx-auto p-5 bg-black rounded-xl" style={{ maxWidth: '990px', height: '566px' }}>
       <div className="text-2xl text-white text-center p-2 font-bold mx-20" style={{ width: '100px', height: '40px' }}>Profile</div>
       <div className="mt-5 mx-20 rounded-lg" style={{ border: '2px solid #875ff6', width: '700px', height: '140px' }}>
         <div className="flex items-center h-full p-4 space-x-4">
